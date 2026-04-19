@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Cupping Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: system-ui;
+      background: #f7f4ee;
+      padding: 20px;
+      color: #2a241d;
+    }
+    h1 { margin-bottom: 20px; }
+    .card {
+      background: white;
+      border: 1px solid #ddd2c6;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>☕ Casa Cupping Dashboard</h1>
+
+<div class="card">
+  <input type="file" id="fileInput" multiple />
+  <p>อัปโหลด JSON หลายไฟล์เพื่อดูผลรวม</p>
+</div>
+
+<div class="card">
+  <canvas id="radarChart"></canvas>
+</div>
+
+<script>
+const input = document.getElementById('fileInput');
+
+input.addEventListener('change', async (e) => {
+  const files = e.target.files;
+
+  let total = {
+    fragrance: 0,
+    aroma: 0,
+    flavor: 0,
+    aftertaste: 0,
+    acidity: 0,
+    sweetness: 0,
+    mouthfeel: 0
+  };
+
+  let count = 0;
+
+  for (let file of files) {
+    const text = await file.text();
+    const data = JSON.parse(text);
+
+    total.fragrance += data.intensity.fragrance;
+    total.aroma += data.intensity.aroma;
+    total.flavor += data.intensity.flavor;
+    total.aftertaste += data.intensity.aftertaste;
+    total.acidity += data.intensity.acidity;
+    total.sweetness += data.intensity.sweetness;
+    total.mouthfeel += data.intensity.mouthfeel;
+
+    count++;
+  }
+
+  const avg = Object.fromEntries(
+    Object.entries(total).map(([k,v]) => [k, (v/count).toFixed(1)])
+  );
+
+  renderChart(avg);
+});
+
+function renderChart(avg) {
+  const ctx = document.getElementById('radarChart');
+
+  new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: [
+        'Fragrance',
+        'Aroma',
+        'Flavor',
+        'Aftertaste',
+        'Acidity',
+        'Sweetness',
+        'Mouthfeel'
+      ],
+      datasets: [{
+        label: 'Team Average',
+        data: [
+          avg.fragrance,
+          avg.aroma,
+          avg.flavor,
+          avg.aftertaste,
+          avg.acidity,
+          avg.sweetness,
+          avg.mouthfeel
+        ]
+      }]
+    },
+    options: {
+      scales: {
+        r: {
+          min: 0,
+          max: 15
+        }
+      }
+    }
+  });
+}
+</script>
+
+</body>
+</html>
