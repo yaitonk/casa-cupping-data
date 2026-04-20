@@ -1,0 +1,71 @@
+{
+  "coffee": "Alto Quiel",
+  "sample_id": "B04",
+  "cupping_date": "2026-04-20",
+  "cupper": "FUN",
+  "session": "",
+  "round_no": "",
+  "origin": "Panama",
+  "variety": "Geisha",
+  "process": "Natural",
+  "descriptors": {
+    "fragrance_aroma": {
+      "selected": [
+        "berry / เบอร์รี",
+        "candy / ลูกกวาด"
+      ],
+      "custom": "แยม"
+    },
+    "flavor": {
+      "selected": [
+        "berry / เบอร์รี",
+        "candy / ลูกกวาด",
+        "honey / น้ำผึ้ง"
+      ],
+      "custom": ""
+    },
+    "aftertaste": {
+      "selected": [
+        "sweet / หวาน",
+        "medium / ปานกลาง"
+      ],
+      "custom": ""
+    },
+    "acidity": {
+      "selected": [
+        "tartaric / ทาร์ทาริก"
+      ],
+      "custom": ""
+    },
+    "sweetness": {
+      "selected": [
+        "candy / ลูกกวาด",
+        "jammy / แยม"
+      ],
+      "custom": ""
+    },
+    "mouthfeel": {
+      "selected": [
+        "juicy / ฉ่ำ",
+        "dense / แน่น",
+        "syrupy / หนืดหวาน"
+      ],
+      "custom": ""
+    }
+  },
+  "intensity": {
+    "fragrance": 11,
+    "aroma": 11,
+    "flavor": 11,
+    "aftertaste": 9,
+    "acidity": 7,
+    "sweetness": 12,
+    "mouthfeel": 10
+  },
+  "descriptive_notes": "",
+  "defects": "",
+  "tasting_notes": "",
+  "next_action": "",
+  "tags": "#cupping #cva #coffee",
+  "created_at": "2026-04-20T10:05:16.789Z"
+}

@@ -1,0 +1,71 @@
+{
+  "coffee": "Alto Quiel",
+  "sample_id": "B06",
+  "cupping_date": "2026-04-20",
+  "cupper": "FUN",
+  "session": "AM",
+  "round_no": "",
+  "origin": "Panama",
+  "variety": "Geisha",
+  "process": "Natural",
+  "descriptors": {
+    "fragrance_aroma": {
+      "selected": [
+        "tropical fruit / ผลไม้เมืองร้อน",
+        "floral / ดอกไม้"
+      ],
+      "custom": "แยม"
+    },
+    "flavor": {
+      "selected": [
+        "floral / ดอกไม้",
+        "tropical fruit / ผลไม้เมืองร้อน",
+        "tea-like / คล้ายชา"
+      ],
+      "custom": ""
+    },
+    "aftertaste": {
+      "selected": [
+        "short / สั้น",
+        "clean / สะอาด",
+        "tea-like / คล้ายชา"
+      ],
+      "custom": ""
+    },
+    "acidity": {
+      "selected": [
+        "tartaric / ทาร์ทาริก",
+        "bright / สดใส"
+      ],
+      "custom": ""
+    },
+    "sweetness": {
+      "selected": [
+        "clean sweet / หวานสะอาด"
+      ],
+      "custom": ""
+    },
+    "mouthfeel": {
+      "selected": [
+        "thin / บาง",
+        "tea-like / คล้ายชา"
+      ],
+      "custom": ""
+    }
+  },
+  "intensity": {
+    "fragrance": 10,
+    "aroma": 11,
+    "flavor": 9,
+    "aftertaste": 7,
+    "acidity": 9,
+    "sweetness": 7,
+    "mouthfeel": 7
+  },
+  "descriptive_notes": "",
+  "defects": "",
+  "tasting_notes": "",
+  "next_action": "",
+  "tags": "#cupping #cva #coffee",
+  "created_at": "2026-04-20T10:21:33.607Z"
+}

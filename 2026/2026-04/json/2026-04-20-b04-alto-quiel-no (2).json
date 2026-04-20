@@ -1,0 +1,76 @@
+{
+  "coffee": "Alto Quiel",
+  "sample_id": "B04",
+  "cupping_date": "2026-04-20",
+  "cupper": "noon",
+  "session": "AM",
+  "round_no": "1",
+  "origin": "Panama",
+  "variety": "Geisha",
+  "process": "Natural",
+  "descriptors": {
+    "fragrance_aroma": {
+      "selected": [
+        "floral / ดอกไม้",
+        "berry / เบอร์รี",
+        "citrus / ซิตรัส",
+        "candy / ลูกกวาด"
+      ],
+      "custom": ""
+    },
+    "flavor": {
+      "selected": [
+        "berry / เบอร์รี",
+        "floral / ดอกไม้",
+        "candy / ลูกกวาด",
+        "stone fruit / ผลไม้เมล็ดแข็ง"
+      ],
+      "custom": "Blueberry Jam"
+    },
+    "aftertaste": {
+      "selected": [
+        "sweet / หวาน",
+        "long / ยาว"
+      ],
+      "custom": "Sweet like Blueberry Jam, Long Aftertaste"
+    },
+    "acidity": {
+      "selected": [
+        "tartaric / ทาร์ทาริก",
+        "citric / ซิตรัส",
+        "bright / สดใส"
+      ],
+      "custom": "Juicy & Ferment , Mandarine"
+    },
+    "sweetness": {
+      "selected": [
+        "jammy / แยม"
+      ],
+      "custom": "Vanila & Jammy"
+    },
+    "mouthfeel": {
+      "selected": [
+        "juicy / ฉ่ำ",
+        "smooth / ลื่น",
+        "silky / เนียน",
+        "syrupy / หนืดหวาน"
+      ],
+      "custom": ""
+    }
+  },
+  "intensity": {
+    "fragrance": 11,
+    "aroma": 12,
+    "flavor": 11,
+    "aftertaste": 12,
+    "acidity": 11,
+    "sweetness": 12,
+    "mouthfeel": 12
+  },
+  "descriptive_notes": "กลิ่นหอมหวานของวานิลา และผลไม่คล้าย บลูเบอรี่ รสชาติ",
+  "defects": "",
+  "tasting_notes": "หอมกลิ่นคล้ายฝักวานิลาสด รสชาติเปรี้ยวหวานเต็มคำเป็นแยม เนื้อเนียน หวานเต็มคำ",
+  "next_action": "",
+  "tags": "#cupping #cva #coffee",
+  "created_at": "2026-04-20T10:04:23.434Z"
+}
