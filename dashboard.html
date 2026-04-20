@@ -733,7 +733,7 @@
         <div>
           <div class="eyebrow">✦ Pro Max UI · Glass + Analytics</div>
           <h1>Casa Cupping Dashboard</h1>
-          <p>เวอร์ชันจัดเต็ม: glassmorphism, tabs, dark mode, analytics panel และ auto-load JSON จาก GitHub แบบเดิม</p>
+          <p>เวอร์ชันจัดเต็ม: glassmorphism, tabs, dark mode, analytics panel, insights และ auto-load JSON จาก GitHub</p>
         </div>
         <div class="hero-actions">
           <button class="ghost-btn" id="themeToggle">🌙 Dark</button>
@@ -809,7 +809,7 @@
 
     <section class="glass insights-panel" id="insightsPanel">
       <div class="insights-head">
-        <h3>Insights</h3>
+        <h3>Top Batch Insights</h3>
         <div class="sub">สรุป batch เด่นจากข้อมูล intensity</div>
       </div>
 
@@ -836,6 +836,39 @@
           <span class="insight-label">Mouthfeel ดีสุด</span>
           <strong class="insight-title" id="insightMouthfeel">-</strong>
           <div class="insight-meta" id="insightMouthfeelMeta">-</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="glass insights-panel" id="averageInsightsPanel">
+      <div class="insights-head">
+        <h3>Average Insights</h3>
+        <div class="sub">ค่าเฉลี่ยรวมจากทุก record ที่มีข้อมูล intensity จริง</div>
+      </div>
+
+      <div class="insights-grid" id="averageInsightsGrid">
+        <div class="insight-card">
+          <span class="insight-label">Avg Fragrance/Aroma</span>
+          <strong class="insight-title" id="avgInsightFragranceAroma">-</strong>
+          <div class="insight-meta" id="avgInsightFragranceAromaMeta">-</div>
+        </div>
+
+        <div class="insight-card">
+          <span class="insight-label">Avg Acidity</span>
+          <strong class="insight-title" id="avgInsightAcidity">-</strong>
+          <div class="insight-meta" id="avgInsightAcidityMeta">-</div>
+        </div>
+
+        <div class="insight-card">
+          <span class="insight-label">Avg Sweetness</span>
+          <strong class="insight-title" id="avgInsightSweetness">-</strong>
+          <div class="insight-meta" id="avgInsightSweetnessMeta">-</div>
+        </div>
+
+        <div class="insight-card">
+          <span class="insight-label">Avg Mouthfeel</span>
+          <strong class="insight-title" id="avgInsightMouthfeel">-</strong>
+          <div class="insight-meta" id="avgInsightMouthfeelMeta">-</div>
         </div>
       </div>
     </section>
@@ -1117,6 +1150,20 @@
       return valid[0];
     }
 
+    function getAverageValue(records, scorer) {
+      const valid = records
+        .map(record => scorer(record))
+        .filter(value => value !== null && !Number.isNaN(value));
+
+      if (!valid.length) return null;
+
+      const sum = valid.reduce((acc, value) => acc + value, 0);
+      return {
+        average: sum / valid.length,
+        count: valid.length
+      };
+    }
+
     function insightTitle(record) {
       return `${record.sample_id || "-"} · ${record.coffee || "-"}`;
     }
@@ -1169,6 +1216,45 @@
         sweetnessTop,
         mouthfeelTop
       });
+    }
+
+    function renderAverageInsights(records) {
+      const avgFragranceAroma = getAverageValue(records, getFragranceAromaCombined);
+      const avgAcidity = getAverageValue(records, r => getIntensityValue(r, "acidity"));
+      const avgSweetness = getAverageValue(records, r => getIntensityValue(r, "sweetness"));
+      const avgMouthfeel = getAverageValue(records, r => getIntensityValue(r, "mouthfeel"));
+
+      if (avgFragranceAroma) {
+        document.getElementById("avgInsightFragranceAroma").textContent = avgFragranceAroma.average.toFixed(2);
+        document.getElementById("avgInsightFragranceAromaMeta").textContent = `คำนวณจาก ${avgFragranceAroma.count} record`;
+      } else {
+        document.getElementById("avgInsightFragranceAroma").textContent = "-";
+        document.getElementById("avgInsightFragranceAromaMeta").textContent = "ไม่มีข้อมูล intensity";
+      }
+
+      if (avgAcidity) {
+        document.getElementById("avgInsightAcidity").textContent = avgAcidity.average.toFixed(2);
+        document.getElementById("avgInsightAcidityMeta").textContent = `คำนวณจาก ${avgAcidity.count} record`;
+      } else {
+        document.getElementById("avgInsightAcidity").textContent = "-";
+        document.getElementById("avgInsightAcidityMeta").textContent = "ไม่มีข้อมูล intensity";
+      }
+
+      if (avgSweetness) {
+        document.getElementById("avgInsightSweetness").textContent = avgSweetness.average.toFixed(2);
+        document.getElementById("avgInsightSweetnessMeta").textContent = `คำนวณจาก ${avgSweetness.count} record`;
+      } else {
+        document.getElementById("avgInsightSweetness").textContent = "-";
+        document.getElementById("avgInsightSweetnessMeta").textContent = "ไม่มีข้อมูล intensity";
+      }
+
+      if (avgMouthfeel) {
+        document.getElementById("avgInsightMouthfeel").textContent = avgMouthfeel.average.toFixed(2);
+        document.getElementById("avgInsightMouthfeelMeta").textContent = `คำนวณจาก ${avgMouthfeel.count} record`;
+      } else {
+        document.getElementById("avgInsightMouthfeel").textContent = "-";
+        document.getElementById("avgInsightMouthfeelMeta").textContent = "ไม่มีข้อมูล intensity";
+      }
     }
 
     function destroyInsightsChart() {
@@ -1514,6 +1600,7 @@
       document.getElementById("status").textContent = `แสดง ${records.length} รายการ`;
       updateHeader(records);
       renderInsights(records);
+      renderAverageInsights(records);
       renderSpotlight(records);
       renderRecentList(records);
       renderDescriptorCloud(records);
