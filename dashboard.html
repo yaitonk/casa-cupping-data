@@ -49,7 +49,8 @@
         radial-gradient(circle at 80% 84%, rgba(110,231,183,0.18), transparent 22%),
         linear-gradient(180deg,var(--bg1),var(--bg2) 48%,var(--bg3));
       min-height:100vh;
-      padding:88px 18px 18px;
+      padding:18px;
+      padding-top:84px;
       transition:background .25s ease,color .25s ease;
     }
 
@@ -90,8 +91,8 @@
       padding:8px;
       border-radius:999px;
       background:rgba(255,255,255,0.15);
-      backdrop-filter:blur(20px);
-      -webkit-backdrop-filter:blur(20px);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border:1px solid rgba(255,255,255,0.2);
       box-shadow:0 10px 30px rgba(0,0,0,0.15);
     }
@@ -287,6 +288,55 @@
       margin:8px 2px 16px;
     }
 
+    .insights-panel{
+      padding:20px;
+      border-radius:30px;
+      margin-bottom:18px;
+    }
+
+    .insights-head h3{
+      margin:0 0 4px;
+      font-size:21px;
+      letter-spacing:-.03em;
+    }
+
+    .insights-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+      margin-top:14px;
+    }
+
+    .insight-card{
+      padding:16px;
+      border-radius:22px;
+      background:var(--chip);
+      border:1px solid var(--line);
+    }
+
+    .insight-label{
+      display:block;
+      font-size:12px;
+      color:var(--muted);
+      margin-bottom:8px;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+    }
+
+    .insight-title{
+      display:block;
+      font-size:20px;
+      line-height:1.15;
+      letter-spacing:-.03em;
+      margin-bottom:6px;
+    }
+
+    .insight-meta{
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.4;
+    }
+
     .section{ display:none; }
     .section.active{ display:block; }
 
@@ -335,6 +385,7 @@
       gap:10px;
       flex-wrap:wrap;
     }
+
     .pill{
       display:inline-flex;
       align-items:center;
@@ -345,6 +396,7 @@
       border:1px solid var(--line);
       font-size:13px;
     }
+
     .mini-panel{
       padding:20px;
       border-radius:30px;
@@ -525,20 +577,47 @@
       .meta{ grid-template-columns:repeat(2,1fr); }
     }
 
+    @media (max-width:1100px){
+      .insights-grid{ grid-template-columns:repeat(2,1fr); }
+    }
+
     @media (max-width:768px){
       body{
-        padding:76px 12px 12px;
+        padding:12px;
+        padding-top:72px;
       }
 
       .nav-floating{
         top:10px;
         gap:6px;
         padding:6px;
+        width:max-content;
+        max-width:calc(100vw - 24px);
       }
 
       .nav-btn{
         font-size:12px;
         padding:8px 12px;
+      }
+
+      .hero{
+        padding:18px;
+        border-radius:24px;
+        margin-bottom:14px;
+      }
+
+      .summary-grid{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+      }
+
+      .stat{
+        padding:14px;
+        border-radius:18px;
+      }
+
+      .stat .v{
+        font-size:26px;
       }
 
       .sticky-wrap{
@@ -583,24 +662,22 @@
         flex:0 0 auto;
       }
 
-      .hero{
-        padding:18px;
-        border-radius:24px;
-        margin-bottom:14px;
+      .insights-panel{
+        padding:16px;
+        border-radius:22px;
       }
 
-      .summary-grid{
-        grid-template-columns:1fr 1fr;
+      .insights-grid{
+        grid-template-columns:1fr;
         gap:10px;
       }
 
-      .stat{
-        padding:14px;
+      .insight-card{
         border-radius:18px;
       }
 
-      .stat .v{
-        font-size:26px;
+      .insight-title{
+        font-size:18px;
       }
 
       .card,
@@ -653,7 +730,6 @@
         </div>
         <div class="hero-actions">
           <button class="ghost-btn" id="themeToggle">🌙 Dark</button>
-          <button class="ghost-btn" id="scrollRecords">↓ Records</button>
           <div class="ghost-btn" id="heroBadge">กำลังเชื่อมต่อ GitHub…</div>
         </div>
       </div>
@@ -724,6 +800,39 @@
 
     <div class="status" id="status">กำลังโหลดข้อมูล…</div>
 
+    <section class="glass insights-panel" id="insightsPanel">
+      <div class="insights-head">
+        <h3>Insights</h3>
+        <div class="sub">สรุป batch เด่นจากข้อมูล intensity</div>
+      </div>
+
+      <div class="insights-grid" id="insightsGrid">
+        <div class="insight-card">
+          <span class="insight-label">Fragrance/Aroma สูงสุด</span>
+          <strong class="insight-title" id="insightFragranceAroma">-</strong>
+          <div class="insight-meta" id="insightFragranceAromaMeta">-</div>
+        </div>
+
+        <div class="insight-card">
+          <span class="insight-label">Acidity สูงสุด</span>
+          <strong class="insight-title" id="insightAcidity">-</strong>
+          <div class="insight-meta" id="insightAcidityMeta">-</div>
+        </div>
+
+        <div class="insight-card">
+          <span class="insight-label">Sweetness สูงสุด</span>
+          <strong class="insight-title" id="insightSweetness">-</strong>
+          <div class="insight-meta" id="insightSweetnessMeta">-</div>
+        </div>
+
+        <div class="insight-card">
+          <span class="insight-label">Mouthfeel ดีสุด</span>
+          <strong class="insight-title" id="insightMouthfeel">-</strong>
+          <div class="insight-meta" id="insightMouthfeelMeta">-</div>
+        </div>
+      </div>
+    </section>
+
     <section class="section active" id="section-overview">
       <div class="spotlight-grid">
         <div class="spotlight glass" id="spotlightCard">
@@ -732,6 +841,7 @@
           <div class="spotlight-sub">กำลังโหลด…</div>
           <div class="spotlight-meta"></div>
         </div>
+
         <div class="mini-panel glass">
           <h3>Recent Samples</h3>
           <div class="sub">5 รายการล่าสุดใน filtered view</div>
@@ -745,6 +855,7 @@
           <div class="sub">ดูการกระจายตัวของ record ตามวัน</div>
           <div class="chart-wrap"><canvas id="dateChart"></canvas></div>
         </div>
+
         <div class="card glass">
           <h3>Origin Mix</h3>
           <div class="sub">สัดส่วน origin ของชุดข้อมูลที่กำลังมองอยู่</div>
@@ -758,6 +869,7 @@
           <div class="sub">จำนวน record ของแต่ละ cupper</div>
           <div class="chart-wrap"><canvas id="cupperChart"></canvas></div>
         </div>
+
         <div class="card glass">
           <h3>Top Descriptors</h3>
           <div class="sub">descriptor ที่เจอบ่อยใน filtered view</div>
@@ -773,11 +885,13 @@
           <div class="sub">เรียงตามจำนวน record</div>
           <div class="stat-list" id="originRank"></div>
         </div>
+
         <div class="list-panel glass">
           <h3>Cuppers Rank</h3>
           <div class="sub">ใคร cupping มากสุดใน filtered view</div>
           <div class="stat-list" id="cupperRank"></div>
         </div>
+
         <div class="list-panel glass">
           <h3>Sessions Rank</h3>
           <div class="sub">AM / PM / other</div>
@@ -813,17 +927,29 @@
       btn.textContent = document.body.classList.contains("dark") ? "☀️ Light" : "🌙 Dark";
     }
 
-    document.getElementById("themeToggle").addEventListener("click", () => {
-      document.body.classList.toggle("dark");
-      localStorage.setItem("casaTheme", document.body.classList.contains("dark") ? "dark" : "light");
-      updateThemeButton();
-      renderAll(getFilteredRecords());
-    });
+    function setupActions() {
+      document.getElementById("themeToggle").addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+        localStorage.setItem("casaTheme", document.body.classList.contains("dark") ? "dark" : "light");
+        updateThemeButton();
+        renderAll(getFilteredRecords());
+      });
 
-    document.getElementById("scrollRecords").addEventListener("click", () => {
-      setActiveTab("records");
-      document.getElementById("section-records").scrollIntoView({ behavior: "smooth", block: "start" });
-    });
+      document.querySelectorAll(".tab-btn").forEach(btn => {
+        btn.addEventListener("click", () => setActiveTab(btn.dataset.tab));
+      });
+
+      document.querySelectorAll(".chip-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.getElementById("sessionFilter").value = btn.dataset.session;
+          applyFilters();
+        });
+      });
+
+      ["searchInput","originFilter","cupperFilter","sessionFilter","sortFilter","quickFilter"].forEach(id => {
+        document.getElementById(id).addEventListener(id === "searchInput" ? "input" : "change", applyFilters);
+      });
+    }
 
     async function fetchRepoJsonFiles() {
       const treeUrl = `https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/git/trees/${BRANCH}?recursive=1`;
@@ -856,6 +982,23 @@
       return v === undefined || v === null || String(v).trim() === "" ? fallback : String(v).trim();
     }
 
+    function normalizeIntensity(intensity) {
+      if (!intensity || typeof intensity !== "object") return null;
+      const keys = ["fragrance","aroma","flavor","aftertaste","acidity","sweetness","mouthfeel"];
+      const out = {};
+      let hasAny = false;
+
+      keys.forEach(key => {
+        const value = intensity[key];
+        if (typeof value === "number" && !Number.isNaN(value)) {
+          out[key] = value;
+          hasAny = true;
+        }
+      });
+
+      return hasAny ? out : null;
+    }
+
     function normalizeRecord(jsonData, path) {
       return {
         coffee: normalizeText(jsonData.coffee),
@@ -868,6 +1011,7 @@
         variety: normalizeText(jsonData.variety),
         process: normalizeText(jsonData.process),
         descriptors: flattenDescriptors(jsonData.descriptors),
+        intensity: normalizeIntensity(jsonData.intensity),
         path
       };
     }
@@ -929,6 +1073,81 @@
         });
       });
       return Object.entries(counts).sort((a,b) => b[1] - a[1]).slice(0, limit);
+    }
+
+    function getIntensityValue(record, key) {
+      if (!record || !record.intensity) return null;
+      const value = record.intensity[key];
+      return typeof value === "number" ? value : null;
+    }
+
+    function getFragranceAromaCombined(record) {
+      const fragrance = getIntensityValue(record, "fragrance");
+      const aroma = getIntensityValue(record, "aroma");
+
+      if (fragrance === null && aroma === null) return null;
+      if (fragrance === null) return aroma;
+      if (aroma === null) return fragrance;
+
+      return (fragrance + aroma) / 2;
+    }
+
+    function pickExtremeRecord(records, scorer, mode = "max") {
+      const valid = records
+        .map(record => ({ record, value: scorer(record) }))
+        .filter(item => item.value !== null && !Number.isNaN(item.value));
+
+      if (!valid.length) return null;
+
+      valid.sort((a, b) => mode === "max" ? b.value - a.value : a.value - b.value);
+      return valid[0];
+    }
+
+    function insightTitle(record) {
+      return `${record.sample_id || "-"} · ${record.coffee || "-"}`;
+    }
+
+    function insightMeta(record, value, label) {
+      return `${label}: ${value.toFixed(1)} · ${record.cupping_date || "-"} · ${record.cupper || "-"}`;
+    }
+
+    function renderInsights(records) {
+      const fragranceAromaTop = pickExtremeRecord(records, getFragranceAromaCombined, "max");
+      const acidityTop = pickExtremeRecord(records, r => getIntensityValue(r, "acidity"), "max");
+      const sweetnessTop = pickExtremeRecord(records, r => getIntensityValue(r, "sweetness"), "max");
+      const mouthfeelTop = pickExtremeRecord(records, r => getIntensityValue(r, "mouthfeel"), "max");
+
+      if (fragranceAromaTop) {
+        document.getElementById("insightFragranceAroma").textContent = insightTitle(fragranceAromaTop.record);
+        document.getElementById("insightFragranceAromaMeta").textContent = insightMeta(fragranceAromaTop.record, fragranceAromaTop.value, "Avg F/A");
+      } else {
+        document.getElementById("insightFragranceAroma").textContent = "-";
+        document.getElementById("insightFragranceAromaMeta").textContent = "ไม่มีข้อมูล intensity";
+      }
+
+      if (acidityTop) {
+        document.getElementById("insightAcidity").textContent = insightTitle(acidityTop.record);
+        document.getElementById("insightAcidityMeta").textContent = insightMeta(acidityTop.record, acidityTop.value, "Acidity");
+      } else {
+        document.getElementById("insightAcidity").textContent = "-";
+        document.getElementById("insightAcidityMeta").textContent = "ไม่มีข้อมูล intensity";
+      }
+
+      if (sweetnessTop) {
+        document.getElementById("insightSweetness").textContent = insightTitle(sweetnessTop.record);
+        document.getElementById("insightSweetnessMeta").textContent = insightMeta(sweetnessTop.record, sweetnessTop.value, "Sweetness");
+      } else {
+        document.getElementById("insightSweetness").textContent = "-";
+        document.getElementById("insightSweetnessMeta").textContent = "ไม่มีข้อมูล intensity";
+      }
+
+      if (mouthfeelTop) {
+        document.getElementById("insightMouthfeel").textContent = insightTitle(mouthfeelTop.record);
+        document.getElementById("insightMouthfeelMeta").textContent = insightMeta(mouthfeelTop.record, mouthfeelTop.value, "Mouthfeel");
+      } else {
+        document.getElementById("insightMouthfeel").textContent = "-";
+        document.getElementById("insightMouthfeelMeta").textContent = "ไม่มีข้อมูล intensity";
+      }
     }
 
     function updateHeader(records) {
@@ -1200,6 +1419,7 @@
     function renderAll(records) {
       document.getElementById("status").textContent = `แสดง ${records.length} รายการ`;
       updateHeader(records);
+      renderInsights(records);
       renderSpotlight(records);
       renderRecentList(records);
       renderDescriptorCloud(records);
@@ -1221,21 +1441,6 @@
       document.querySelectorAll(".section").forEach(section => section.classList.remove("active"));
       document.getElementById(`section-${tabName}`).classList.add("active");
     }
-
-    document.querySelectorAll(".tab-btn").forEach(btn => {
-      btn.addEventListener("click", () => setActiveTab(btn.dataset.tab));
-    });
-
-    document.querySelectorAll(".chip-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        document.getElementById("sessionFilter").value = btn.dataset.session;
-        applyFilters();
-      });
-    });
-
-    ["searchInput","originFilter","cupperFilter","sessionFilter","sortFilter","quickFilter"].forEach(id => {
-      document.getElementById(id).addEventListener(id === "searchInput" ? "input" : "change", applyFilters);
-    });
 
     async function init() {
       try {
@@ -1278,6 +1483,7 @@
     }
 
     applySavedTheme();
+    setupActions();
     init();
   </script>
 </body>
