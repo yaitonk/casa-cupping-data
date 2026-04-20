@@ -1,0 +1,71 @@
+{
+  "coffee": "Alto Quiel",
+  "sample_id": "B06",
+  "cupping_date": "2026-04-20",
+  "cupper": "noon",
+  "session": "AM",
+  "round_no": "1",
+  "origin": "Panama",
+  "variety": "Geisha",
+  "process": "Natural",
+  "descriptors": {
+    "fragrance_aroma": {
+      "selected": [
+        "citrus / ซิตรัส",
+        "stone fruit / ผลไม้เมล็ดแข็ง"
+      ],
+      "custom": "Pulpal Grap, Fruity, PeachC C1"
+    },
+    "flavor": {
+      "selected": [
+        "stone fruit / ผลไม้เมล็ดแข็ง",
+        "citrus / ซิตรัส"
+      ],
+      "custom": "Apricot, Orange,  Vanila"
+    },
+    "aftertaste": {
+      "selected": [
+        "sweet / หวาน",
+        "medium / ปานกลาง"
+      ],
+      "custom": "Sweet Vanila ตอนเย็น"
+    },
+    "acidity": {
+      "selected": [
+        "citric / ซิตรัส",
+        "bright / สดใส",
+        "malic / มาลิก"
+      ],
+      "custom": "Juicy, Mandarin"
+    },
+    "sweetness": {
+      "selected": [
+        "ripe fruit / ผลไม้สุก",
+        "sugar / น้ำตาล"
+      ],
+      "custom": "Vanila & Apricot"
+    },
+    "mouthfeel": {
+      "selected": [
+        "juicy / ฉ่ำ",
+        "thin / บาง"
+      ],
+      "custom": ""
+    }
+  },
+  "intensity": {
+    "fragrance": 8,
+    "aroma": 9,
+    "flavor": 10,
+    "aftertaste": 9,
+    "acidity": 9,
+    "sweetness": 9,
+    "mouthfeel": 9
+  },
+  "descriptive_notes": "กลิ่นหอมหวานของวานิลา และผลไม้คล้ายแอปริคอต",
+  "defects": "",
+  "tasting_notes": "หอมกลิ่นคล้ายฝักวานิลานวล ฉ่ำเปรี้ยวส้ม แอปริคอต",
+  "next_action": "",
+  "tags": "#cupping #cva #coffee",
+  "created_at": "2026-04-20T11:00:39.130Z"
+}
