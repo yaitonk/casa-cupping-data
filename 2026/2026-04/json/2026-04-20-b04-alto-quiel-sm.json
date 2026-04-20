@@ -2,12 +2,12 @@
   "coffee": "Alto Quiel Selecto Natural",
   "sample_id": "B04",
   "cupping_date": "2026-04-20",
-  "cupper": "",
-  "session": "",
-  "round_no": "",
+  "cupper": "Smile",
+  "session": "am",
+  "round_no": "01",
   "origin": "Panama",
   "variety": "Geisha",
-  "process": "",
+  "process": "Natural",
   "descriptors": {
     "fragrance_aroma": {
       "selected": [
