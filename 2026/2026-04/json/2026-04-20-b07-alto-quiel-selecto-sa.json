@@ -1,0 +1,74 @@
+{
+  "coffee": "Alto Quiel Selecto",
+  "sample_id": "B07",
+  "cupping_date": "2026-04-20",
+  "cupper": "SAF",
+  "session": "",
+  "round_no": "",
+  "origin": "Panama",
+  "variety": "Geisha",
+  "process": "Natural",
+  "descriptors": {
+    "fragrance_aroma": {
+      "selected": [
+        "floral / ดอกไม้",
+        "caramel / คาราเมล"
+      ],
+      "custom": "ดอกไม้เบาๆ มีความเป็น คาราเมลเบาๆ"
+    },
+    "flavor": {
+      "selected": [
+        "floral / ดอกไม้",
+        "caramel / คาราเมล"
+      ],
+      "custom": "ลูกเกด"
+    },
+    "aftertaste": {
+      "selected": [
+        "clean / สะอาด",
+        "sweet / หวาน",
+        "long / ยาว"
+      ],
+      "custom": ""
+    },
+    "acidity": {
+      "selected": [
+        "soft / นุ่ม",
+        "bright / สดใส"
+      ],
+      "custom": ""
+    },
+    "sweetness": {
+      "selected": [
+        "jammy / แยม",
+        "clean sweet / หวานสะอาด",
+        "candy / ลูกกวาด"
+      ],
+      "custom": "มีความหวานแบบแยม"
+    },
+    "mouthfeel": {
+      "selected": [
+        "silky / เนียน",
+        "creamy / ครีมมี",
+        "smooth / ลื่น",
+        "dense / แน่น"
+      ],
+      "custom": ""
+    }
+  },
+  "intensity": {
+    "fragrance": 8,
+    "aroma": 7,
+    "flavor": 7,
+    "aftertaste": 7,
+    "acidity": 7,
+    "sweetness": 7,
+    "mouthfeel": 8
+  },
+  "descriptive_notes": "ดอกไม้เบาๆ ความหวานแบบ แยม",
+  "defects": "ไม่มี",
+  "tasting_notes": "Sweet ,แยม , ลูกเกด , delicate flower",
+  "next_action": "",
+  "tags": "#cupping #cva #coffee",
+  "created_at": "2026-04-20T04:47:54.264Z"
+}

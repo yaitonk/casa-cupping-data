@@ -1,0 +1,69 @@
+{
+  "coffee": "Alto Quiel Selecto",
+  "sample_id": "B04",
+  "cupping_date": "2026-04-20",
+  "cupper": "SAF",
+  "session": "",
+  "round_no": "",
+  "origin": "Panama",
+  "variety": "Geisha",
+  "process": "Natural",
+  "descriptors": {
+    "fragrance_aroma": {
+      "selected": [
+        "floral / ดอกไม้",
+        "caramel / คาราเมล"
+      ],
+      "custom": "ดอกไม้เบาๆ มีความเป็น คาราเมลเบาๆ"
+    },
+    "flavor": {
+      "selected": [
+        "floral / ดอกไม้",
+        "caramel / คาราเมล"
+      ],
+      "custom": ""
+    },
+    "aftertaste": {
+      "selected": [
+        "clean / สะอาด",
+        "sweet / หวาน",
+        "tea-like / คล้ายชา",
+        "long / ยาว"
+      ],
+      "custom": ""
+    },
+    "acidity": {
+      "selected": [
+        "soft / นุ่ม",
+        "bright / สดใส"
+      ],
+      "custom": "มีความเปรี้ยวช่วงท้ายนิดหน่อยเหมือนชาส้ม"
+    },
+    "sweetness": {
+      "selected": [
+        "jammy / แยม",
+        "clean sweet / หวานสะอาด"
+      ],
+      "custom": "ช่วงแรกหวานสะอาด เวลาผ่านไปช่วง18 นาที มีความหวานแบบแยม"
+    },
+    "mouthfeel": {
+      "selected": [],
+      "custom": "เนียนสบายปาก มีความลื่นไหนไม่สะดุด"
+    }
+  },
+  "intensity": {
+    "fragrance": 7,
+    "aroma": 7,
+    "flavor": 7,
+    "aftertaste": 8,
+    "acidity": 7,
+    "sweetness": 8,
+    "mouthfeel": 8
+  },
+  "descriptive_notes": "ดอกไม้เบาๆ ความหวาน clean มีรสเปรี้ยวเหมือนชาส้ม",
+  "defects": "ไม่มี",
+  "tasting_notes": "Sweet ,Clean , tea orange, delicate flower",
+  "next_action": "",
+  "tags": "#cupping #cva #coffee",
+  "created_at": "2026-04-20T04:39:04.776Z"
+}
