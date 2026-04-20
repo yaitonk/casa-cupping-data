@@ -1,0 +1,74 @@
+{
+  "coffee": "",
+  "sample_id": "",
+  "cupping_date": "2026-04-20",
+  "cupper": "",
+  "session": "",
+  "round_no": "",
+  "origin": "",
+  "variety": "",
+  "process": "",
+  "descriptors": {
+    "fragrance_aroma": {
+      "selected": [
+        "floral / ดอกไม้",
+        "citrus / ซิตรัส",
+        "candy / ลูกกวาด",
+        "caramel / คาราเมล"
+      ],
+      "custom": ""
+    },
+    "flavor": {
+      "selected": [
+        "floral / ดอกไม้",
+        "citrus / ซิตรัส",
+        "honey / น้ำผึ้ง"
+      ],
+      "custom": ""
+    },
+    "aftertaste": {
+      "selected": [
+        "clean / สะอาด",
+        "sweet / หวาน",
+        "medium / ปานกลาง"
+      ],
+      "custom": ""
+    },
+    "acidity": {
+      "selected": [
+        "bright / สดใส",
+        "citric / ซิตรัส"
+      ],
+      "custom": ""
+    },
+    "sweetness": {
+      "selected": [
+        "candy / ลูกกวาด",
+        "caramel / คาราเมล"
+      ],
+      "custom": ""
+    },
+    "mouthfeel": {
+      "selected": [
+        "smooth / ลื่น",
+        "silky / เนียน"
+      ],
+      "custom": ""
+    }
+  },
+  "intensity": {
+    "fragrance": 7,
+    "aroma": 6,
+    "flavor": 7,
+    "aftertaste": 8,
+    "acidity": 7,
+    "sweetness": 7,
+    "mouthfeel": 8
+  },
+  "descriptive_notes": "",
+  "defects": "",
+  "tasting_notes": "",
+  "next_action": "",
+  "tags": "#cupping #cva #coffee",
+  "created_at": "2026-04-20T03:42:57.811Z"
+}
