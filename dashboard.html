@@ -1,118 +1,394 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <title>Cupping Dashboard</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casa Cupping Dashboard</title>
   <style>
     body {
-      font-family: system-ui;
-      background: #f7f4ee;
-      padding: 20px;
-      color: #2a241d;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 24px;
+      background: #f4f1eb;
+      color: #2b2b2b;
     }
-    h1 { margin-bottom: 20px; }
-    .card {
-      background: white;
-      border: 1px solid #ddd2c6;
-      border-radius: 12px;
-      padding: 16px;
+
+    h1 {
+      margin-top: 0;
       margin-bottom: 16px;
+      font-size: 24px;
+    }
+
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .card,
+    .summary-box {
+      background: #fff;
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .summary-title {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 6px;
+    }
+
+    .summary-value {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input, select {
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 14px;
+      background: #fff;
+    }
+
+    .status {
+      margin-bottom: 16px;
+      color: #666;
+    }
+
+    .list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .item-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 8px 14px;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .label {
+      color: #777;
+      font-size: 12px;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .descriptors {
+      margin-top: 12px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #eee7dc;
+      border-radius: 999px;
+      padding: 4px 10px;
+      margin: 4px 6px 0 0;
+      font-size: 12px;
+    }
+
+    .file-path {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #888;
+      word-break: break-all;
+    }
+
+    .empty {
+      padding: 20px;
+      background: #fff;
+      border-radius: 14px;
+      color: #777;
     }
   </style>
 </head>
 <body>
+  <h1>☕ Casa Cupping Dashboard</h1>
 
-<h1>☕ Casa Cupping Dashboard</h1>
+  <div class="summary-grid">
+    <div class="summary-box">
+      <div class="summary-title">จำนวนไฟล์ JSON</div>
+      <div class="summary-value" id="totalFiles">-</div>
+    </div>
+    <div class="summary-box">
+      <div class="summary-title">จำนวนรายการที่โหลดได้</div>
+      <div class="summary-value" id="totalRecords">-</div>
+    </div>
+    <div class="summary-box">
+      <div class="summary-title">Origin ที่พบ</div>
+      <div class="summary-value" id="totalOrigins">-</div>
+    </div>
+    <div class="summary-box">
+      <div class="summary-title">Cupper ที่พบ</div>
+      <div class="summary-value" id="totalCuppers">-</div>
+    </div>
+  </div>
 
-<div class="card">
-  <input type="file" id="fileInput" multiple />
-  <p>อัปโหลด JSON หลายไฟล์เพื่อดูผลรวม</p>
-</div>
+  <div class="controls">
+    <input type="text" id="searchInput" placeholder="ค้นหา coffee / sample / origin / variety" />
+    <select id="originFilter">
+      <option value="">ทุก Origin</option>
+    </select>
+    <select id="cupperFilter">
+      <option value="">ทุก Cupper</option>
+    </select>
+  </div>
 
-<div class="card">
-  <canvas id="radarChart"></canvas>
-</div>
+  <div class="status" id="status">กำลังโหลดข้อมูล...</div>
+  <div class="list" id="results"></div>
 
-<script>
-const input = document.getElementById('fileInput');
+  <script>
+    const GITHUB_USER = "yaitonk";
+    const REPO_NAME = "casa-cupping-data";
+    const BRANCH = "main";
 
-input.addEventListener('change', async (e) => {
-  const files = e.target.files;
+    let allRecords = [];
 
-  let total = {
-    fragrance: 0,
-    aroma: 0,
-    flavor: 0,
-    aftertaste: 0,
-    acidity: 0,
-    sweetness: 0,
-    mouthfeel: 0
-  };
+    async function fetchRepoJsonFiles() {
+      const treeUrl = `https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/git/trees/${BRANCH}?recursive=1`;
+      const res = await fetch(treeUrl);
+      if (!res.ok) {
+        throw new Error("โหลดรายชื่อไฟล์จาก GitHub ไม่สำเร็จ");
+      }
 
-  let count = 0;
+      const data = await res.json();
 
-  for (let file of files) {
-    const text = await file.text();
-    const data = JSON.parse(text);
+      return data.tree
+        .filter(item =>
+          item.type === "blob" &&
+          item.path.toLowerCase().endsWith(".json")
+        )
+        .map(item => item.path);
+    }
 
-    total.fragrance += data.intensity.fragrance;
-    total.aroma += data.intensity.aroma;
-    total.flavor += data.intensity.flavor;
-    total.aftertaste += data.intensity.aftertaste;
-    total.acidity += data.intensity.acidity;
-    total.sweetness += data.intensity.sweetness;
-    total.mouthfeel += data.intensity.mouthfeel;
+    async function fetchJsonFile(path) {
+      const rawUrl = `https://raw.githubusercontent.com/${GITHUB_USER}/${REPO_NAME}/${BRANCH}/${path}`;
+      const res = await fetch(rawUrl);
+      if (!res.ok) {
+        throw new Error(`โหลดไฟล์ไม่สำเร็จ: ${path}`);
+      }
+      return await res.json();
+    }
 
-    count++;
-  }
+    function flattenDescriptors(descriptors) {
+      if (!descriptors || typeof descriptors !== "object") return [];
 
-  const avg = Object.fromEntries(
-    Object.entries(total).map(([k,v]) => [k, (v/count).toFixed(1)])
-  );
+      const tags = [];
 
-  renderChart(avg);
-});
-
-function renderChart(avg) {
-  const ctx = document.getElementById('radarChart');
-
-  new Chart(ctx, {
-    type: 'radar',
-    data: {
-      labels: [
-        'Fragrance',
-        'Aroma',
-        'Flavor',
-        'Aftertaste',
-        'Acidity',
-        'Sweetness',
-        'Mouthfeel'
-      ],
-      datasets: [{
-        label: 'Team Average',
-        data: [
-          avg.fragrance,
-          avg.aroma,
-          avg.flavor,
-          avg.aftertaste,
-          avg.acidity,
-          avg.sweetness,
-          avg.mouthfeel
-        ]
-      }]
-    },
-    options: {
-      scales: {
-        r: {
-          min: 0,
-          max: 15
+      for (const [key, value] of Object.entries(descriptors)) {
+        if (value && Array.isArray(value.selected)) {
+          value.selected.forEach(v => tags.push(v));
+        }
+        if (value && typeof value.custom === "string" && value.custom.trim()) {
+          tags.push(value.custom.trim());
         }
       }
-    }
-  });
-}
-</script>
 
+      return tags;
+    }
+
+    function normalizeRecord(jsonData, path) {
+      return {
+        coffee: jsonData.coffee || "-",
+        sample_id: jsonData.sample_id || "-",
+        cupping_date: jsonData.cupping_date || "-",
+        cupper: jsonData.cupper || "-",
+        session: jsonData.session || "-",
+        round_no: jsonData.round_no || "-",
+        origin: jsonData.origin || "-",
+        variety: jsonData.variety || "-",
+        process: jsonData.process || "-",
+        descriptors: flattenDescriptors(jsonData.descriptors),
+        path
+      };
+    }
+
+    function updateSummary(records, fileCount) {
+      document.getElementById("totalFiles").textContent = fileCount;
+      document.getElementById("totalRecords").textContent = records.length;
+
+      const origins = new Set(records.map(r => r.origin).filter(v => v && v !== "-"));
+      const cuppers = new Set(records.map(r => r.cupper).filter(v => v && v !== "-"));
+
+      document.getElementById("totalOrigins").textContent = origins.size;
+      document.getElementById("totalCuppers").textContent = cuppers.size;
+    }
+
+    function fillFilters(records) {
+      const originFilter = document.getElementById("originFilter");
+      const cupperFilter = document.getElementById("cupperFilter");
+
+      const origins = [...new Set(records.map(r => r.origin).filter(v => v && v !== "-"))].sort();
+      const cuppers = [...new Set(records.map(r => r.cupper).filter(v => v && v !== "-"))].sort();
+
+      originFilter.innerHTML = `<option value="">ทุก Origin</option>`;
+      cupperFilter.innerHTML = `<option value="">ทุก Cupper</option>`;
+
+      origins.forEach(origin => {
+        const option = document.createElement("option");
+        option.value = origin;
+        option.textContent = origin;
+        originFilter.appendChild(option);
+      });
+
+      cuppers.forEach(cupper => {
+        const option = document.createElement("option");
+        option.value = cupper;
+        option.textContent = cupper;
+        cupperFilter.appendChild(option);
+      });
+    }
+
+    function renderRecords(records) {
+      const results = document.getElementById("results");
+      results.innerHTML = "";
+
+      if (!records.length) {
+        results.innerHTML = `<div class="empty">ไม่พบข้อมูลที่ตรงกับเงื่อนไข</div>`;
+        return;
+      }
+
+      records.forEach(record => {
+        const card = document.createElement("div");
+        card.className = "card";
+
+        const descriptorHtml = record.descriptors.length
+          ? record.descriptors.map(d => `<span class="tag">${escapeHtml(d)}</span>`).join("")
+          : `<span style="color:#888;">ไม่มี descriptor</span>`;
+
+        card.innerHTML = `
+          <div class="item-title">${escapeHtml(record.coffee)}</div>
+
+          <div class="meta">
+            <div><span class="label">Sample ID</span>${escapeHtml(record.sample_id)}</div>
+            <div><span class="label">Date</span>${escapeHtml(record.cupping_date)}</div>
+            <div><span class="label">Cupper</span>${escapeHtml(record.cupper)}</div>
+            <div><span class="label">Session</span>${escapeHtml(record.session)}</div>
+            <div><span class="label">Round</span>${escapeHtml(record.round_no)}</div>
+            <div><span class="label">Origin</span>${escapeHtml(record.origin)}</div>
+            <div><span class="label">Variety</span>${escapeHtml(record.variety)}</div>
+            <div><span class="label">Process</span>${escapeHtml(record.process)}</div>
+          </div>
+
+          <div class="descriptors">
+            <div class="label">Descriptors</div>
+            ${descriptorHtml}
+          </div>
+
+          <div class="file-path">ไฟล์: ${escapeHtml(record.path)}</div>
+        `;
+
+        results.appendChild(card);
+      });
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function applyFilters() {
+      const keyword = document.getElementById("searchInput").value.trim().toLowerCase();
+      const origin = document.getElementById("originFilter").value;
+      const cupper = document.getElementById("cupperFilter").value;
+
+      const filtered = allRecords.filter(record => {
+        const haystack = [
+          record.coffee,
+          record.sample_id,
+          record.origin,
+          record.variety,
+          record.process,
+          record.cupper,
+          ...record.descriptors
+        ].join(" ").toLowerCase();
+
+        const matchKeyword = !keyword || haystack.includes(keyword);
+        const matchOrigin = !origin || record.origin === origin;
+        const matchCupper = !cupper || record.cupper === cupper;
+
+        return matchKeyword && matchOrigin && matchCupper;
+      });
+
+      document.getElementById("status").textContent = `แสดง ${filtered.length} รายการ`;
+      renderRecords(filtered);
+    }
+
+    async function init() {
+      const status = document.getElementById("status");
+
+      try {
+        status.textContent = "กำลังอ่านรายชื่อไฟล์ JSON จาก GitHub...";
+
+        const jsonPaths = await fetchRepoJsonFiles();
+
+        if (!jsonPaths.length) {
+          status.textContent = "ไม่พบไฟล์ JSON ใน repo";
+          updateSummary([], 0);
+          renderRecords([]);
+          return;
+        }
+
+        status.textContent = `พบ ${jsonPaths.length} ไฟล์ กำลังโหลดข้อมูล...`;
+
+        const loaded = await Promise.allSettled(
+          jsonPaths.map(async path => {
+            const jsonData = await fetchJsonFile(path);
+            return normalizeRecord(jsonData, path);
+          })
+        );
+
+        allRecords = loaded
+          .filter(item => item.status === "fulfilled")
+          .map(item => item.value)
+          .sort((a, b) => String(b.cupping_date).localeCompare(String(a.cupping_date)));
+
+        updateSummary(allRecords, jsonPaths.length);
+        fillFilters(allRecords);
+        status.textContent = `โหลดสำเร็จ ${allRecords.length} รายการ จาก ${jsonPaths.length} ไฟล์`;
+        renderRecords(allRecords);
+
+      } catch (error) {
+        console.error(error);
+        status.textContent = "เกิดข้อผิดพลาด: " + error.message;
+      }
+    }
+
+    document.getElementById("searchInput").addEventListener("input", applyFilters);
+    document.getElementById("originFilter").addEventListener("change", applyFilters);
+    document.getElementById("cupperFilter").addEventListener("change", applyFilters);
+
+    init();
+  </script>
 </body>
 </html>
