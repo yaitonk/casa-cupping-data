@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Casa Cupping Dashboard — Pro Max</title>
+  <title>Casa Cupping Dashboard — Final Pro Max</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     :root{
@@ -19,6 +19,8 @@
       --chip:rgba(255,255,255,0.65);
       --accent:#5564ff;
       --accent-soft:rgba(85,100,255,0.12);
+      --up:#16a34a;
+      --down:#dc2626;
     }
 
     body.dark{
@@ -288,16 +290,24 @@
       margin:8px 2px 16px;
     }
 
-    .insights-panel{
+    .insights-panel,
+    .insights-chart-card,
+    .compare-panel{
       padding:20px;
       border-radius:30px;
       margin-bottom:18px;
     }
 
-    .insights-head h3{
+    .section-title-lg{
       margin:0 0 4px;
       font-size:21px;
       letter-spacing:-.03em;
+    }
+
+    .sub{
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:14px;
     }
 
     .insights-grid{
@@ -335,12 +345,6 @@
       font-size:13px;
       color:var(--muted);
       line-height:1.4;
-    }
-
-    .insights-chart-card{
-      padding:20px;
-      border-radius:30px;
-      margin-bottom:18px;
     }
 
     .section{ display:none; }
@@ -403,19 +407,14 @@
       font-size:13px;
     }
 
-    .mini-panel{
+    .mini-panel, .card, .list-panel{
       padding:20px;
       border-radius:30px;
     }
-    .mini-panel h3,.card h3{
+    .mini-panel h3,.card h3,.list-panel h3{
       margin:0 0 4px;
       font-size:21px;
       letter-spacing:-.03em;
-    }
-    .sub{
-      color:var(--muted);
-      font-size:13px;
-      margin-bottom:14px;
     }
     .mini-list{
       display:grid;
@@ -445,10 +444,7 @@
       gap:18px;
       margin-bottom:18px;
     }
-    .card{
-      padding:20px;
-      border-radius:30px;
-    }
+
     .chart-wrap{
       height:300px;
       position:relative;
@@ -478,8 +474,6 @@
       margin-bottom:18px;
     }
     .list-panel{
-      padding:20px;
-      border-radius:30px;
       min-height:320px;
     }
     .stat-list{
@@ -574,7 +568,35 @@
       padding:26px;
       border-radius:26px;
       color:var(--muted);
+      background:var(--glass);
+      border:1px solid var(--line);
     }
+
+    #batchCompareTable{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0 10px;
+      min-width:520px;
+    }
+    #batchCompareTable th,
+    #batchCompareTable td{
+      background:var(--chip);
+      border:1px solid var(--line);
+      padding:12px;
+      font-size:14px;
+      text-align:left;
+    }
+    #batchCompareTable th:first-child,
+    #batchCompareTable td:first-child{
+      border-radius:14px 0 0 14px;
+    }
+    #batchCompareTable th:last-child,
+    #batchCompareTable td:last-child{
+      border-radius:0 14px 14px 0;
+    }
+    .compare-up{ color:var(--up); font-weight:700; }
+    .compare-down{ color:var(--down); font-weight:700; }
+    .compare-flat{ color:var(--muted); font-weight:700; }
 
     @media (max-width:1200px){
       .summary-grid{ grid-template-columns:repeat(3,1fr); }
@@ -669,7 +691,13 @@
       }
 
       .insights-panel,
-      .insights-chart-card{
+      .insights-chart-card,
+      .compare-panel,
+      .card,
+      .spotlight,
+      .mini-panel,
+      .list-panel,
+      .record{
         padding:16px;
         border-radius:22px;
       }
@@ -685,15 +713,6 @@
 
       .insight-title{
         font-size:18px;
-      }
-
-      .card,
-      .spotlight,
-      .mini-panel,
-      .list-panel,
-      .record{
-        border-radius:22px;
-        padding:16px;
       }
 
       .chart-wrap{
@@ -731,9 +750,9 @@
     <section class="hero glass">
       <div class="hero-top">
         <div>
-          <div class="eyebrow">✦ Pro Max UI · Glass + Analytics</div>
+          <div class="eyebrow">✦ Final Pro Max · Glass + Analytics</div>
           <h1>Casa Cupping Dashboard</h1>
-          <p>เวอร์ชันจัดเต็ม: glassmorphism, tabs, dark mode, analytics panel, insights และ auto-load JSON จาก GitHub</p>
+          <p>รวม overview, insights, average insights, compare batches และ auto-load JSON จาก GitHub ในหน้าเดียว</p>
         </div>
         <div class="hero-actions">
           <button class="ghost-btn" id="themeToggle">🌙 Dark</button>
@@ -807,13 +826,11 @@
 
     <div class="status" id="status">กำลังโหลดข้อมูล…</div>
 
-    <section class="glass insights-panel" id="insightsPanel">
-      <div class="insights-head">
-        <h3>Top Batch Insights</h3>
-        <div class="sub">สรุป batch เด่นจากข้อมูล intensity</div>
-      </div>
+    <section class="glass insights-panel">
+      <h3 class="section-title-lg">Top Batch Insights</h3>
+      <div class="sub">สรุป batch เด่นจากข้อมูล intensity</div>
 
-      <div class="insights-grid" id="insightsGrid">
+      <div class="insights-grid">
         <div class="insight-card">
           <span class="insight-label">Fragrance/Aroma สูงสุด</span>
           <strong class="insight-title" id="insightFragranceAroma">-</strong>
@@ -840,13 +857,11 @@
       </div>
     </section>
 
-    <section class="glass insights-panel" id="averageInsightsPanel">
-      <div class="insights-head">
-        <h3>Average Insights</h3>
-        <div class="sub">ค่าเฉลี่ยรวมจากทุก record ที่มีข้อมูล intensity จริง</div>
-      </div>
+    <section class="glass insights-panel">
+      <h3 class="section-title-lg">Average Insights</h3>
+      <div class="sub">ค่าเฉลี่ยรวมจากทุก record ที่มีข้อมูล intensity จริง</div>
 
-      <div class="insights-grid" id="averageInsightsGrid">
+      <div class="insights-grid">
         <div class="insight-card">
           <span class="insight-label">Avg Fragrance/Aroma</span>
           <strong class="insight-title" id="avgInsightFragranceAroma">-</strong>
@@ -874,9 +889,46 @@
     </section>
 
     <section class="glass insights-chart-card">
-      <h3>Insights Graph</h3>
+      <h3 class="section-title-lg">Insights Graph</h3>
       <div class="sub">เปรียบเทียบค่าของ batch ที่เด่นสุดในแต่ละหัวข้อ</div>
       <div class="chart-wrap"><canvas id="insightsChart"></canvas></div>
+    </section>
+
+    <section class="glass compare-panel">
+      <h3 class="section-title-lg">Batch Compare · B04 vs B06</h3>
+      <div class="sub">เปรียบเทียบแบบค่าเฉลี่ยรวมของทุกไฟล์ใน sample id B04 และ B06</div>
+
+      <div class="grid-main" style="margin-bottom:0;">
+        <div class="card glass">
+          <h3>Radar Compare</h3>
+          <div class="sub">ดู shape ของค่าเฉลี่ยแต่ละ batch</div>
+          <div class="chart-wrap"><canvas id="batchCompareRadar"></canvas></div>
+        </div>
+
+        <div class="card glass">
+          <h3>Bar Compare</h3>
+          <div class="sub">ดูค่าเฉลี่ยแต่ละหัวข้อแบบตรงๆ</div>
+          <div class="chart-wrap"><canvas id="batchCompareBar"></canvas></div>
+        </div>
+      </div>
+
+      <div class="card glass" style="margin-top:18px;">
+        <h3>Summary Table</h3>
+        <div class="sub">ค่าเฉลี่ย intensity ของ B04 และ B06</div>
+        <div style="overflow-x:auto;">
+          <table id="batchCompareTable">
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>B04</th>
+                <th>B06</th>
+                <th>Diff</th>
+              </tr>
+            </thead>
+            <tbody id="batchCompareTableBody"></tbody>
+          </table>
+        </div>
+      </div>
     </section>
 
     <section class="section active" id="section-overview">
@@ -962,6 +1014,8 @@
     let originChart = null;
     let cupperChart = null;
     let insightsChart = null;
+    let batchCompareRadar = null;
+    let batchCompareBar = null;
 
     function applySavedTheme() {
       const saved = localStorage.getItem("casaTheme");
@@ -1135,7 +1189,6 @@
       if (fragrance === null && aroma === null) return null;
       if (fragrance === null) return aroma;
       if (aroma === null) return fragrance;
-
       return (fragrance + aroma) / 2;
     }
 
@@ -1312,9 +1365,7 @@
             }
           },
           plugins: {
-            legend: {
-              display: false
-            },
+            legend: { display: false },
             tooltip: {
               callbacks: {
                 label: function(context) {
@@ -1327,6 +1378,210 @@
             }
           }
         }
+      });
+    }
+
+    function getBatchAverage(records, sampleId) {
+      const group = records.filter(r =>
+        String(r.sample_id).trim().toLowerCase() === sampleId.toLowerCase()
+      );
+
+      if (!group.length) return null;
+
+      const values = {
+        fragranceAroma: [],
+        acidity: [],
+        sweetness: [],
+        mouthfeel: []
+      };
+
+      group.forEach(r => {
+        const fa = getFragranceAromaCombined(r);
+        const ac = getIntensityValue(r, "acidity");
+        const sw = getIntensityValue(r, "sweetness");
+        const mf = getIntensityValue(r, "mouthfeel");
+
+        if (fa !== null) values.fragranceAroma.push(fa);
+        if (ac !== null) values.acidity.push(ac);
+        if (sw !== null) values.sweetness.push(sw);
+        if (mf !== null) values.mouthfeel.push(mf);
+      });
+
+      function avg(arr) {
+        if (!arr.length) return null;
+        return arr.reduce((a,b)=>a+b,0) / arr.length;
+      }
+
+      return {
+        sample_id: sampleId.toUpperCase(),
+        count: group.length,
+        fragranceAroma: avg(values.fragranceAroma),
+        acidity: avg(values.acidity),
+        sweetness: avg(values.sweetness),
+        mouthfeel: avg(values.mouthfeel)
+      };
+    }
+
+    function destroyBatchCompareCharts() {
+      if (batchCompareRadar) batchCompareRadar.destroy();
+      if (batchCompareBar) batchCompareBar.destroy();
+    }
+
+    function formatCompareValue(value) {
+      return value === null || Number.isNaN(value) ? "-" : value.toFixed(2);
+    }
+
+    function renderBatchCompare(records) {
+      const b04 = getBatchAverage(records, "B04");
+      const b06 = getBatchAverage(records, "B06");
+
+      const tableBody = document.getElementById("batchCompareTableBody");
+      tableBody.innerHTML = "";
+
+      destroyBatchCompareCharts();
+
+      if (!b04 || !b06) {
+        tableBody.innerHTML = `
+          <tr>
+            <td colspan="4" style="border-radius:14px; text-align:center;">
+              ไม่พบข้อมูล B04 หรือ B06 ใน filtered records
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      const labels = ["Fragrance/Aroma", "Acidity", "Sweetness", "Mouthfeel"];
+
+      const b04Values = [
+        b04.fragranceAroma ?? 0,
+        b04.acidity ?? 0,
+        b04.sweetness ?? 0,
+        b04.mouthfeel ?? 0
+      ];
+
+      const b06Values = [
+        b06.fragranceAroma ?? 0,
+        b06.acidity ?? 0,
+        b06.sweetness ?? 0,
+        b06.mouthfeel ?? 0
+      ];
+
+      batchCompareRadar = new Chart(document.getElementById("batchCompareRadar").getContext("2d"), {
+        type: "radar",
+        data: {
+          labels,
+          datasets: [
+            {
+              label: `B04 (n=${b04.count})`,
+              data: b04Values,
+              borderColor: "rgba(99,102,241,1)",
+              backgroundColor: "rgba(99,102,241,0.18)",
+              pointBackgroundColor: "rgba(99,102,241,1)",
+              borderWidth: 2
+            },
+            {
+              label: `B06 (n=${b06.count})`,
+              data: b06Values,
+              borderColor: "rgba(34,197,94,1)",
+              backgroundColor: "rgba(34,197,94,0.16)",
+              pointBackgroundColor: "rgba(34,197,94,1)",
+              borderWidth: 2
+            }
+          ]
+        },
+        options: {
+          responsive:true,
+          maintainAspectRatio:false,
+          scales:{
+            r:{
+              suggestedMax:15,
+              grid:{ color:chartGridColor() },
+              angleLines:{ color:chartGridColor() },
+              pointLabels:{ color:chartTextColor(), font:{ family:"inherit", size:12 } },
+              ticks:{ color:chartTextColor(), backdropColor:"transparent" }
+            }
+          },
+          plugins:{
+            legend:{ labels:{ color:chartTextColor(), font:{ family:"inherit" } } }
+          }
+        }
+      });
+
+      batchCompareBar = new Chart(document.getElementById("batchCompareBar").getContext("2d"), {
+        type: "bar",
+        data: {
+          labels,
+          datasets: [
+            {
+              label: "B04 avg",
+              data: b04Values,
+              backgroundColor: "rgba(99,102,241,0.9)",
+              borderRadius: 10
+            },
+            {
+              label: "B06 avg",
+              data: b06Values,
+              backgroundColor: "rgba(34,197,94,0.9)",
+              borderRadius: 10
+            }
+          ]
+        },
+        options: {
+          responsive:true,
+          maintainAspectRatio:false,
+          scales:{
+            y:{
+              beginAtZero:true,
+              suggestedMax:15,
+              grid:{ color:chartGridColor() },
+              ticks:{ color:chartTextColor() },
+              title:{
+                display:true,
+                text:"Intensity",
+                color:chartTextColor(),
+                font:{ family:"inherit", size:12 }
+              }
+            },
+            x:{
+              grid:{ display:false },
+              ticks:{ color:chartTextColor() }
+            }
+          },
+          plugins:{
+            legend:{ labels:{ color:chartTextColor(), font:{ family:"inherit" } } }
+          }
+        }
+      });
+
+      const rows = [
+        ["Fragrance/Aroma", b04.fragranceAroma, b06.fragranceAroma],
+        ["Acidity", b04.acidity, b06.acidity],
+        ["Sweetness", b04.sweetness, b06.sweetness],
+        ["Mouthfeel", b04.mouthfeel, b06.mouthfeel]
+      ];
+
+      rows.forEach(([label, v1, v2]) => {
+        const diff = (v1 ?? 0) - (v2 ?? 0);
+        let cls = "compare-flat";
+        let diffText = "0.00";
+
+        if (diff > 0) {
+          cls = "compare-up";
+          diffText = `+${diff.toFixed(2)} (B04)`;
+        } else if (diff < 0) {
+          cls = "compare-down";
+          diffText = `${diff.toFixed(2)} (B06)`;
+        }
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${label}</td>
+          <td>${formatCompareValue(v1)}</td>
+          <td>${formatCompareValue(v2)}</td>
+          <td class="${cls}">${diffText}</td>
+        `;
+        tableBody.appendChild(tr);
       });
     }
 
@@ -1416,7 +1671,7 @@
       results.innerHTML = "";
 
       if (!records.length) {
-        results.innerHTML = `<div class="empty glass">ไม่พบข้อมูลที่ตรงกับเงื่อนไข</div>`;
+        results.innerHTML = `<div class="empty">ไม่พบข้อมูลที่ตรงกับเงื่อนไข</div>`;
         return;
       }
 
@@ -1601,6 +1856,7 @@
       updateHeader(records);
       renderInsights(records);
       renderAverageInsights(records);
+      renderBatchCompare(records);
       renderSpotlight(records);
       renderRecentList(records);
       renderDescriptorCloud(records);
