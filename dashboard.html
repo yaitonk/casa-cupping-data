@@ -3,165 +3,650 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Casa Cupping Dashboard</title>
+  <title>Casa Cupping Dashboard — Pro Max</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 24px;
-      background: #f4f1eb;
-      color: #2b2b2b;
+    :root{
+      --bg1:#eef4ff;
+      --bg2:#f8f6ff;
+      --bg3:#f6fbf7;
+      --glass:rgba(255,255,255,0.54);
+      --glass-strong:rgba(255,255,255,0.74);
+      --line:rgba(255,255,255,0.72);
+      --text:#16202f;
+      --muted:#667085;
+      --shadow:0 20px 60px rgba(23,33,47,0.10);
+      --chip:rgba(255,255,255,0.65);
+      --accent:#5564ff;
+      --accent-soft:rgba(85,100,255,0.12);
     }
 
-    h1 {
-      margin-top: 0;
-      margin-bottom: 16px;
-      font-size: 24px;
+    body.dark{
+      --bg1:#0c1220;
+      --bg2:#12192b;
+      --bg3:#0f1728;
+      --glass:rgba(17,24,39,0.55);
+      --glass-strong:rgba(17,24,39,0.74);
+      --line:rgba(255,255,255,0.08);
+      --text:#eef2ff;
+      --muted:#a8b0c2;
+      --shadow:0 20px 60px rgba(0,0,0,0.28);
+      --chip:rgba(255,255,255,0.06);
+      --accent:#8ea2ff;
+      --accent-soft:rgba(142,162,255,0.18);
     }
 
-    .topbar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 20px;
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Inter",Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 12% 12%, rgba(131,182,255,0.34), transparent 23%),
+        radial-gradient(circle at 88% 10%, rgba(255,205,153,0.26), transparent 24%),
+        radial-gradient(circle at 80% 84%, rgba(110,231,183,0.18), transparent 22%),
+        linear-gradient(180deg,var(--bg1),var(--bg2) 48%,var(--bg3));
+      min-height:100vh;
+      padding:18px;
+      transition:background .25s ease,color .25s ease;
     }
 
-    .card,
-    .summary-box {
-      background: #fff;
-      border-radius: 14px;
-      padding: 16px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    .orb{
+      position:fixed;
+      width:320px;
+      height:320px;
+      border-radius:999px;
+      filter:blur(20px);
+      opacity:0.42;
+      pointer-events:none;
+      z-index:0;
+      animation:float 15s ease-in-out infinite;
+    }
+    .orb.one{ top:2%; left:-80px; background:radial-gradient(circle, rgba(100,149,237,0.34), transparent 60%); }
+    .orb.two{ top:46%; right:-90px; background:radial-gradient(circle, rgba(255,185,122,0.26), transparent 60%); animation-delay:-5s; }
+    .orb.three{ bottom:-50px; left:28%; background:radial-gradient(circle, rgba(110,231,183,0.22), transparent 60%); animation-delay:-9s; }
+    @keyframes float{ 0%,100%{transform:translateY(0) translateX(0)} 50%{transform:translateY(-18px) translateX(12px)} }
+
+    .shell{ max-width:1500px; margin:0 auto; position:relative; z-index:1; }
+    .glass{
+      background:var(--glass);
+      border:1px solid var(--line);
+      backdrop-filter:blur(24px) saturate(1.25);
+      -webkit-backdrop-filter:blur(24px) saturate(1.25);
+      box-shadow:var(--shadow);
     }
 
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
-      margin-bottom: 20px;
+    .hero{
+      padding:26px;
+      border-radius:34px;
+      margin-bottom:18px;
+      overflow:hidden;
+      position:relative;
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      right:-60px;
+      bottom:-80px;
+      width:240px;
+      height:240px;
+      border-radius:999px;
+      background:radial-gradient(circle, rgba(255,255,255,0.36), transparent 68%);
+      pointer-events:none;
+    }
+    .hero-top{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+    .eyebrow{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:9px 14px;
+      border-radius:999px;
+      background:var(--chip);
+      border:1px solid var(--line);
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:12px;
+    }
+    h1{
+      margin:0;
+      font-size:clamp(30px,5vw,54px);
+      line-height:0.94;
+      letter-spacing:-0.055em;
+    }
+    .hero p{
+      margin:12px 0 0;
+      color:var(--muted);
+      font-size:15px;
+      max-width:820px;
+    }
+    .hero-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .ghost-btn{
+      border:none;
+      background:var(--chip);
+      border:1px solid var(--line);
+      color:var(--text);
+      padding:11px 14px;
+      border-radius:999px;
+      font:inherit;
+      cursor:pointer;
+      box-shadow:0 10px 24px rgba(0,0,0,0.04);
     }
 
-    .summary-title {
-      font-size: 13px;
-      color: #777;
-      margin-bottom: 6px;
+    .summary-grid{
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      gap:12px;
+      margin-top:20px;
+    }
+    .stat{
+      padding:18px;
+      border-radius:24px;
+      background:var(--glass-strong);
+      border:1px solid var(--line);
+    }
+    .stat .k{
+      font-size:12px;
+      color:var(--muted);
+      margin-bottom:8px;
+      display:block;
+    }
+    .stat .v{
+      font-size:34px;
+      font-weight:780;
+      line-height:1;
+      letter-spacing:-0.05em;
     }
 
-    .summary-value {
-      font-size: 24px;
-      font-weight: bold;
+    .sticky-wrap{
+      position:sticky;
+      top:10px;
+      z-index:10;
+      margin-bottom:18px;
+    }
+    .control-shell{
+      padding:12px;
+      border-radius:28px;
+    }
+    .filters{
+      display:grid;
+      grid-template-columns:1.6fr .8fr .8fr .8fr .8fr .75fr;
+      gap:12px;
+      margin-bottom:12px;
+    }
+    .filter{
+      padding:14px 16px;
+      border-radius:18px;
+      background:var(--chip);
+      border:1px solid var(--line);
+    }
+    .filter label{
+      display:block;
+      margin-bottom:8px;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      color:var(--muted);
+    }
+    input, select{
+      width:100%;
+      border:none;
+      outline:none;
+      background:transparent;
+      font:inherit;
+      color:var(--text);
+      padding:0;
+      font-size:16px;
     }
 
-    .controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 20px;
+    .bar-bottom{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .tabs, .quick-chips{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .tab-btn, .chip-btn{
+      border:none;
+      cursor:pointer;
+      padding:10px 14px;
+      border-radius:999px;
+      font:inherit;
+      font-size:13px;
+      color:var(--text);
+      background:var(--chip);
+      border:1px solid var(--line);
+    }
+    .tab-btn.active{
+      background:var(--accent-soft);
+      border-color:rgba(85,100,255,0.25);
+      color:var(--accent);
+      font-weight:700;
     }
 
-    input, select {
-      padding: 10px 12px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      font-size: 14px;
-      background: #fff;
+    .status{
+      font-size:14px;
+      color:var(--muted);
+      margin:8px 2px 16px;
     }
 
-    .status {
-      margin-bottom: 16px;
-      color: #666;
+    .section{ display:none; }
+    .section.active{ display:block; }
+
+    .spotlight-grid{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:18px;
+      margin-bottom:18px;
+    }
+    .spotlight{
+      padding:24px;
+      border-radius:32px;
+      position:relative;
+      overflow:hidden;
+    }
+    .spotlight::before{
+      content:"";
+      position:absolute;
+      right:-34px;
+      top:-22px;
+      width:170px;
+      height:170px;
+      border-radius:999px;
+      background:radial-gradient(circle, rgba(255,255,255,0.3), transparent 70%);
+    }
+    .spotlight-kicker{
+      color:var(--muted);
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:8px;
+    }
+    .spotlight-title{
+      font-size:42px;
+      line-height:.96;
+      margin:0 0 10px;
+      letter-spacing:-.055em;
+    }
+    .spotlight-sub{
+      color:var(--muted);
+      font-size:15px;
+      margin-bottom:18px;
+    }
+    .spotlight-meta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:var(--chip);
+      border:1px solid var(--line);
+      font-size:13px;
+    }
+    .mini-panel{
+      padding:20px;
+      border-radius:30px;
+    }
+    .mini-panel h3,.card h3{
+      margin:0 0 4px;
+      font-size:21px;
+      letter-spacing:-.03em;
+    }
+    .sub{
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:14px;
+    }
+    .mini-list{
+      display:grid;
+      gap:10px;
+    }
+    .mini-item{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding:12px 14px;
+      border-radius:18px;
+      background:var(--chip);
+      border:1px solid var(--line);
+      font-size:14px;
     }
 
-    .list {
-      display: grid;
-      gap: 14px;
+    .grid-main{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:18px;
+      margin-bottom:18px;
+    }
+    .grid-secondary{
+      display:grid;
+      grid-template-columns:.92fr 1.08fr;
+      gap:18px;
+      margin-bottom:18px;
+    }
+    .card{
+      padding:20px;
+      border-radius:30px;
+    }
+    .chart-wrap{
+      height:300px;
+      position:relative;
+    }
+    .descriptor-cloud{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-content:flex-start;
+      min-height:300px;
+    }
+    .tag{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:10px 14px;
+      border-radius:999px;
+      background:var(--chip);
+      border:1px solid var(--line);
+      font-size:13px;
     }
 
-    .item-title {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 8px;
+    .analytics-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-bottom:18px;
+    }
+    .list-panel{
+      padding:20px;
+      border-radius:30px;
+      min-height:320px;
+    }
+    .stat-list{
+      display:grid;
+      gap:10px;
+    }
+    .row{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+      padding:12px 14px;
+      border-radius:18px;
+      background:var(--chip);
+      border:1px solid var(--line);
+      font-size:14px;
     }
 
-    .meta {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 8px 14px;
-      font-size: 14px;
-      margin-bottom: 10px;
+    .records{
+      display:grid;
+      gap:16px;
+    }
+    .record{
+      padding:20px;
+      border-radius:30px;
+    }
+    .record-top{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+      align-items:flex-start;
+      margin-bottom:16px;
+    }
+    .record-title{
+      margin:0;
+      font-size:30px;
+      line-height:1;
+      letter-spacing:-.045em;
+    }
+    .record-sub{
+      margin-top:8px;
+      font-size:13px;
+      color:var(--muted);
+    }
+    .meta{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      margin-bottom:14px;
+    }
+    .meta-box{
+      padding:14px;
+      border-radius:18px;
+      background:var(--chip);
+      border:1px solid var(--line);
+    }
+    .meta-box .label{
+      display:block;
+      font-size:11px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      margin-bottom:6px;
+    }
+    .meta-box .value{
+      font-size:18px;
+      line-height:1.2;
+      word-break:break-word;
+    }
+    .desc-wrap{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:14px;
+    }
+    .desc{
+      display:inline-flex;
+      padding:9px 13px;
+      border-radius:999px;
+      background:var(--glass-strong);
+      border:1px solid var(--line);
+      font-size:13px;
+    }
+    .path{
+      font-size:12px;
+      color:var(--muted);
+      word-break:break-all;
+    }
+    .empty{
+      text-align:center;
+      padding:26px;
+      border-radius:26px;
+      color:var(--muted);
     }
 
-    .label {
-      color: #777;
-      font-size: 12px;
-      display: block;
-      margin-bottom: 2px;
+    @media (max-width:1200px){
+      .summary-grid{ grid-template-columns:repeat(3,1fr); }
+      .filters{ grid-template-columns:repeat(2,1fr); }
+      .spotlight-grid,.grid-main,.grid-secondary,.analytics-grid{ grid-template-columns:1fr; }
+      .meta{ grid-template-columns:repeat(2,1fr); }
     }
-
-    .descriptors {
-      margin-top: 12px;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .tag {
-      display: inline-block;
-      background: #eee7dc;
-      border-radius: 999px;
-      padding: 4px 10px;
-      margin: 4px 6px 0 0;
-      font-size: 12px;
-    }
-
-    .file-path {
-      margin-top: 10px;
-      font-size: 12px;
-      color: #888;
-      word-break: break-all;
-    }
-
-    .empty {
-      padding: 20px;
-      background: #fff;
-      border-radius: 14px;
-      color: #777;
+    @media (max-width:740px){
+      body{ padding:14px; }
+      .hero{ padding:20px; border-radius:28px; }
+      .summary-grid{ grid-template-columns:1fr 1fr; }
+      .filters{ grid-template-columns:1fr; }
+      .meta{ grid-template-columns:1fr; }
+      .record-title{ font-size:24px; }
+      .spotlight-title{ font-size:30px; }
+      .chart-wrap{ height:260px; }
     }
   </style>
 </head>
 <body>
-  <h1>☕ Casa Cupping Dashboard</h1>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+  <div class="orb three"></div>
 
-  <div class="summary-grid">
-    <div class="summary-box">
-      <div class="summary-title">จำนวนไฟล์ JSON</div>
-      <div class="summary-value" id="totalFiles">-</div>
+  <div class="shell">
+    <section class="hero glass">
+      <div class="hero-top">
+        <div>
+          <div class="eyebrow">✦ Pro Max UI · Glass + Analytics</div>
+          <h1>Casa Cupping Dashboard</h1>
+          <p>เวอร์ชันจัดเต็ม: glassmorphism, tabs, dark mode, analytics panel และ auto-load JSON จาก GitHub แบบเดิม</p>
+        </div>
+        <div class="hero-actions">
+          <button class="ghost-btn" id="themeToggle">🌙 Dark</button>
+          <button class="ghost-btn" id="scrollRecords">↓ Records</button>
+          <div class="ghost-btn" id="heroBadge">กำลังเชื่อมต่อ GitHub…</div>
+        </div>
+      </div>
+
+      <div class="summary-grid">
+        <div class="stat"><span class="k">จำนวนไฟล์ JSON</span><div class="v" id="totalFiles">-</div></div>
+        <div class="stat"><span class="k">จำนวนรายการ</span><div class="v" id="totalRecords">-</div></div>
+        <div class="stat"><span class="k">Origin ที่พบ</span><div class="v" id="totalOrigins">-</div></div>
+        <div class="stat"><span class="k">Cupper ที่พบ</span><div class="v" id="totalCuppers">-</div></div>
+        <div class="stat"><span class="k">Session ที่พบ</span><div class="v" id="totalSessions">-</div></div>
+        <div class="stat"><span class="k">Descriptors ทั้งหมด</span><div class="v" id="totalDescriptors">-</div></div>
+      </div>
+    </section>
+
+    <div class="sticky-wrap">
+      <section class="control-shell glass">
+        <div class="filters">
+          <div class="filter">
+            <label>Search</label>
+            <input id="searchInput" type="text" placeholder="ค้นหา coffee / sample / origin / variety / descriptor" />
+          </div>
+          <div class="filter">
+            <label>Origin</label>
+            <select id="originFilter"><option value="">ทุก Origin</option></select>
+          </div>
+          <div class="filter">
+            <label>Cupper</label>
+            <select id="cupperFilter"><option value="">ทุก Cupper</option></select>
+          </div>
+          <div class="filter">
+            <label>Session</label>
+            <select id="sessionFilter"><option value="">ทุก Session</option></select>
+          </div>
+          <div class="filter">
+            <label>Sort</label>
+            <select id="sortFilter">
+              <option value="date_desc">ใหม่สุดก่อน</option>
+              <option value="date_asc">เก่าสุดก่อน</option>
+              <option value="coffee_asc">Coffee A-Z</option>
+              <option value="sample_asc">Sample A-Z</option>
+            </select>
+          </div>
+          <div class="filter">
+            <label>Quick</label>
+            <select id="quickFilter">
+              <option value="">All</option>
+              <option value="latest">Latest 5</option>
+              <option value="am">AM only</option>
+              <option value="pm">PM only</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="bar-bottom">
+          <div class="tabs">
+            <button class="tab-btn active" data-tab="overview">Overview</button>
+            <button class="tab-btn" data-tab="analytics">Analytics</button>
+            <button class="tab-btn" data-tab="records">Records</button>
+          </div>
+          <div class="quick-chips">
+            <button class="chip-btn" data-session="AM">AM only</button>
+            <button class="chip-btn" data-session="PM">PM only</button>
+            <button class="chip-btn" data-session="">All sessions</button>
+          </div>
+        </div>
+      </section>
     </div>
-    <div class="summary-box">
-      <div class="summary-title">จำนวนรายการที่โหลดได้</div>
-      <div class="summary-value" id="totalRecords">-</div>
-    </div>
-    <div class="summary-box">
-      <div class="summary-title">Origin ที่พบ</div>
-      <div class="summary-value" id="totalOrigins">-</div>
-    </div>
-    <div class="summary-box">
-      <div class="summary-title">Cupper ที่พบ</div>
-      <div class="summary-value" id="totalCuppers">-</div>
-    </div>
+
+    <div class="status" id="status">กำลังโหลดข้อมูล…</div>
+
+    <section class="section active" id="section-overview">
+      <div class="spotlight-grid">
+        <div class="spotlight glass" id="spotlightCard">
+          <div class="spotlight-kicker">Latest Record</div>
+          <h2 class="spotlight-title">—</h2>
+          <div class="spotlight-sub">กำลังโหลด…</div>
+          <div class="spotlight-meta"></div>
+        </div>
+        <div class="mini-panel glass">
+          <h3>Recent Samples</h3>
+          <div class="sub">5 รายการล่าสุดใน filtered view</div>
+          <div class="mini-list" id="recentList"></div>
+        </div>
+      </div>
+
+      <div class="grid-main">
+        <div class="card glass">
+          <h3>Records by Date</h3>
+          <div class="sub">ดูการกระจายตัวของ record ตามวัน</div>
+          <div class="chart-wrap"><canvas id="dateChart"></canvas></div>
+        </div>
+        <div class="card glass">
+          <h3>Origin Mix</h3>
+          <div class="sub">สัดส่วน origin ของชุดข้อมูลที่กำลังมองอยู่</div>
+          <div class="chart-wrap"><canvas id="originChart"></canvas></div>
+        </div>
+      </div>
+
+      <div class="grid-secondary">
+        <div class="card glass">
+          <h3>Cupper Activity</h3>
+          <div class="sub">จำนวน record ของแต่ละ cupper</div>
+          <div class="chart-wrap"><canvas id="cupperChart"></canvas></div>
+        </div>
+        <div class="card glass">
+          <h3>Top Descriptors</h3>
+          <div class="sub">descriptor ที่เจอบ่อยใน filtered view</div>
+          <div class="descriptor-cloud" id="descriptorCloud"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section-analytics">
+      <div class="analytics-grid">
+        <div class="list-panel glass">
+          <h3>Origins Rank</h3>
+          <div class="sub">เรียงตามจำนวน record</div>
+          <div class="stat-list" id="originRank"></div>
+        </div>
+        <div class="list-panel glass">
+          <h3>Cuppers Rank</h3>
+          <div class="sub">ใคร cupping มากสุดใน filtered view</div>
+          <div class="stat-list" id="cupperRank"></div>
+        </div>
+        <div class="list-panel glass">
+          <h3>Sessions Rank</h3>
+          <div class="sub">AM / PM / other</div>
+          <div class="stat-list" id="sessionRank"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section-records">
+      <div class="records" id="results"></div>
+    </section>
   </div>
-
-  <div class="controls">
-    <input type="text" id="searchInput" placeholder="ค้นหา coffee / sample / origin / variety" />
-    <select id="originFilter">
-      <option value="">ทุก Origin</option>
-    </select>
-    <select id="cupperFilter">
-      <option value="">ทุก Cupper</option>
-    </select>
-  </div>
-
-  <div class="status" id="status">กำลังโหลดข้อมูล...</div>
-  <div class="list" id="results"></div>
 
   <script>
     const GITHUB_USER = "yaitonk";
@@ -169,143 +654,96 @@
     const BRANCH = "main";
 
     let allRecords = [];
+    let totalJsonFiles = 0;
+    let dateChart = null;
+    let originChart = null;
+    let cupperChart = null;
+
+    function applySavedTheme() {
+      const saved = localStorage.getItem("casaTheme");
+      if (saved === "dark") document.body.classList.add("dark");
+      updateThemeButton();
+    }
+
+    function updateThemeButton() {
+      const btn = document.getElementById("themeToggle");
+      btn.textContent = document.body.classList.contains("dark") ? "☀️ Light" : "🌙 Dark";
+    }
+
+    function setupActions() {
+      document.getElementById("themeToggle").addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+        localStorage.setItem("casaTheme", document.body.classList.contains("dark") ? "dark" : "light");
+        updateThemeButton();
+        renderAll(getFilteredRecords());
+      });
+
+      document.getElementById("scrollRecords").addEventListener("click", () => {
+        setActiveTab("records");
+        document.getElementById("section-records").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+
+      document.querySelectorAll(".tab-btn").forEach(btn => {
+        btn.addEventListener("click", () => setActiveTab(btn.dataset.tab));
+      });
+
+      document.querySelectorAll(".chip-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.getElementById("sessionFilter").value = btn.dataset.session;
+          applyFilters();
+        });
+      });
+
+      ["searchInput","originFilter","cupperFilter","sessionFilter","sortFilter","quickFilter"].forEach(id => {
+        document.getElementById(id).addEventListener(id === "searchInput" ? "input" : "change", applyFilters);
+      });
+    }
 
     async function fetchRepoJsonFiles() {
       const treeUrl = `https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/git/trees/${BRANCH}?recursive=1`;
       const res = await fetch(treeUrl);
-      if (!res.ok) {
-        throw new Error("โหลดรายชื่อไฟล์จาก GitHub ไม่สำเร็จ");
-      }
-
+      if (!res.ok) throw new Error("โหลดรายชื่อไฟล์จาก GitHub ไม่สำเร็จ");
       const data = await res.json();
-
       return data.tree
-        .filter(item =>
-          item.type === "blob" &&
-          item.path.toLowerCase().endsWith(".json")
-        )
+        .filter(item => item.type === "blob" && item.path.toLowerCase().endsWith(".json"))
         .map(item => item.path);
     }
 
     async function fetchJsonFile(path) {
       const rawUrl = `https://raw.githubusercontent.com/${GITHUB_USER}/${REPO_NAME}/${BRANCH}/${path}`;
       const res = await fetch(rawUrl);
-      if (!res.ok) {
-        throw new Error(`โหลดไฟล์ไม่สำเร็จ: ${path}`);
-      }
+      if (!res.ok) throw new Error(`โหลดไฟล์ไม่สำเร็จ: ${path}`);
       return await res.json();
     }
 
     function flattenDescriptors(descriptors) {
       if (!descriptors || typeof descriptors !== "object") return [];
-
       const tags = [];
-
-      for (const [key, value] of Object.entries(descriptors)) {
-        if (value && Array.isArray(value.selected)) {
-          value.selected.forEach(v => tags.push(v));
-        }
-        if (value && typeof value.custom === "string" && value.custom.trim()) {
-          tags.push(value.custom.trim());
-        }
+      for (const [, value] of Object.entries(descriptors)) {
+        if (value && Array.isArray(value.selected)) value.selected.forEach(v => tags.push(v));
+        if (value && typeof value.custom === "string" && value.custom.trim()) tags.push(value.custom.trim());
       }
-
       return tags;
+    }
+
+    function normalizeText(v, fallback = "-") {
+      return v === undefined || v === null || String(v).trim() === "" ? fallback : String(v).trim();
     }
 
     function normalizeRecord(jsonData, path) {
       return {
-        coffee: jsonData.coffee || "-",
-        sample_id: jsonData.sample_id || "-",
-        cupping_date: jsonData.cupping_date || "-",
-        cupper: jsonData.cupper || "-",
-        session: jsonData.session || "-",
-        round_no: jsonData.round_no || "-",
-        origin: jsonData.origin || "-",
-        variety: jsonData.variety || "-",
-        process: jsonData.process || "-",
+        coffee: normalizeText(jsonData.coffee),
+        sample_id: normalizeText(jsonData.sample_id),
+        cupping_date: normalizeText(jsonData.cupping_date),
+        cupper: normalizeText(jsonData.cupper),
+        session: normalizeText(jsonData.session),
+        round_no: normalizeText(jsonData.round_no),
+        origin: normalizeText(jsonData.origin),
+        variety: normalizeText(jsonData.variety),
+        process: normalizeText(jsonData.process),
         descriptors: flattenDescriptors(jsonData.descriptors),
         path
       };
-    }
-
-    function updateSummary(records, fileCount) {
-      document.getElementById("totalFiles").textContent = fileCount;
-      document.getElementById("totalRecords").textContent = records.length;
-
-      const origins = new Set(records.map(r => r.origin).filter(v => v && v !== "-"));
-      const cuppers = new Set(records.map(r => r.cupper).filter(v => v && v !== "-"));
-
-      document.getElementById("totalOrigins").textContent = origins.size;
-      document.getElementById("totalCuppers").textContent = cuppers.size;
-    }
-
-    function fillFilters(records) {
-      const originFilter = document.getElementById("originFilter");
-      const cupperFilter = document.getElementById("cupperFilter");
-
-      const origins = [...new Set(records.map(r => r.origin).filter(v => v && v !== "-"))].sort();
-      const cuppers = [...new Set(records.map(r => r.cupper).filter(v => v && v !== "-"))].sort();
-
-      originFilter.innerHTML = `<option value="">ทุก Origin</option>`;
-      cupperFilter.innerHTML = `<option value="">ทุก Cupper</option>`;
-
-      origins.forEach(origin => {
-        const option = document.createElement("option");
-        option.value = origin;
-        option.textContent = origin;
-        originFilter.appendChild(option);
-      });
-
-      cuppers.forEach(cupper => {
-        const option = document.createElement("option");
-        option.value = cupper;
-        option.textContent = cupper;
-        cupperFilter.appendChild(option);
-      });
-    }
-
-    function renderRecords(records) {
-      const results = document.getElementById("results");
-      results.innerHTML = "";
-
-      if (!records.length) {
-        results.innerHTML = `<div class="empty">ไม่พบข้อมูลที่ตรงกับเงื่อนไข</div>`;
-        return;
-      }
-
-      records.forEach(record => {
-        const card = document.createElement("div");
-        card.className = "card";
-
-        const descriptorHtml = record.descriptors.length
-          ? record.descriptors.map(d => `<span class="tag">${escapeHtml(d)}</span>`).join("")
-          : `<span style="color:#888;">ไม่มี descriptor</span>`;
-
-        card.innerHTML = `
-          <div class="item-title">${escapeHtml(record.coffee)}</div>
-
-          <div class="meta">
-            <div><span class="label">Sample ID</span>${escapeHtml(record.sample_id)}</div>
-            <div><span class="label">Date</span>${escapeHtml(record.cupping_date)}</div>
-            <div><span class="label">Cupper</span>${escapeHtml(record.cupper)}</div>
-            <div><span class="label">Session</span>${escapeHtml(record.session)}</div>
-            <div><span class="label">Round</span>${escapeHtml(record.round_no)}</div>
-            <div><span class="label">Origin</span>${escapeHtml(record.origin)}</div>
-            <div><span class="label">Variety</span>${escapeHtml(record.variety)}</div>
-            <div><span class="label">Process</span>${escapeHtml(record.process)}</div>
-          </div>
-
-          <div class="descriptors">
-            <div class="label">Descriptors</div>
-            ${descriptorHtml}
-          </div>
-
-          <div class="file-path">ไฟล์: ${escapeHtml(record.path)}</div>
-        `;
-
-        results.appendChild(card);
-      });
     }
 
     function escapeHtml(value) {
@@ -317,49 +755,361 @@
         .replaceAll("'", "&#039;");
     }
 
-    function applyFilters() {
+    function uniqueCount(records, key) {
+      return new Set(records.map(r => r[key]).filter(v => v && v !== "-")).size;
+    }
+
+    function totalDescriptorCount(records) {
+      return records.reduce((sum, r) => sum + r.descriptors.length, 0);
+    }
+
+    function fillSelect(id, values, firstLabel) {
+      const select = document.getElementById(id);
+      const unique = [...new Set(values.filter(v => v && v !== "-"))].sort();
+      select.innerHTML = `<option value="">${firstLabel}</option>`;
+      unique.forEach(v => {
+        const option = document.createElement("option");
+        option.value = v;
+        option.textContent = v;
+        select.appendChild(option);
+      });
+    }
+
+    function countBy(records, key) {
+      const map = {};
+      records.forEach(r => {
+        const val = r[key] && r[key] !== "-" ? r[key] : "Unknown";
+        map[val] = (map[val] || 0) + 1;
+      });
+      return map;
+    }
+
+    function countByDate(records) {
+      const map = {};
+      records.forEach(r => {
+        const val = r.cupping_date && r.cupping_date !== "-" ? r.cupping_date : "Unknown";
+        map[val] = (map[val] || 0) + 1;
+      });
+      return Object.fromEntries(Object.entries(map).sort((a,b) => a[0].localeCompare(b[0])));
+    }
+
+    function topDescriptors(records, limit = 24) {
+      const counts = {};
+      records.forEach(r => {
+        r.descriptors.forEach(d => {
+          const key = String(d).trim();
+          if (!key) return;
+          counts[key] = (counts[key] || 0) + 1;
+        });
+      });
+      return Object.entries(counts).sort((a,b) => b[1] - a[1]).slice(0, limit);
+    }
+
+    function updateHeader(records) {
+      document.getElementById("totalFiles").textContent = totalJsonFiles;
+      document.getElementById("totalRecords").textContent = records.length;
+      document.getElementById("totalOrigins").textContent = uniqueCount(records, "origin");
+      document.getElementById("totalCuppers").textContent = uniqueCount(records, "cupper");
+      document.getElementById("totalSessions").textContent = uniqueCount(records, "session");
+      document.getElementById("totalDescriptors").textContent = totalDescriptorCount(records);
+      document.getElementById("heroBadge").textContent = `${GITHUB_USER}/${REPO_NAME}`;
+    }
+
+    function renderSpotlight(records) {
+      const card = document.getElementById("spotlightCard");
+      const title = card.querySelector(".spotlight-title");
+      const sub = card.querySelector(".spotlight-sub");
+      const meta = card.querySelector(".spotlight-meta");
+
+      if (!records.length) {
+        title.textContent = "No records";
+        sub.textContent = "ไม่พบข้อมูลตามเงื่อนไขที่เลือก";
+        meta.innerHTML = "";
+        return;
+      }
+
+      const r = records[0];
+      title.textContent = r.coffee;
+      sub.textContent = `${r.sample_id} · ${r.cupping_date} · ${r.cupper}`;
+      meta.innerHTML = `
+        <div class="pill">🌍 ${escapeHtml(r.origin)}</div>
+        <div class="pill">🧬 ${escapeHtml(r.variety)}</div>
+        <div class="pill">⚙️ ${escapeHtml(r.process)}</div>
+        <div class="pill">🕒 ${escapeHtml(r.session)}</div>
+      `;
+    }
+
+    function renderRecentList(records) {
+      const list = document.getElementById("recentList");
+      list.innerHTML = "";
+      records.slice(0, 5).forEach(r => {
+        const div = document.createElement("div");
+        div.className = "mini-item";
+        div.innerHTML = `
+          <div><strong>${escapeHtml(r.sample_id)}</strong><br><span style="color:var(--muted)">${escapeHtml(r.coffee)}</span></div>
+          <div style="text-align:right;color:var(--muted)">${escapeHtml(r.cupping_date)}<br>${escapeHtml(r.session)}</div>
+        `;
+        list.appendChild(div);
+      });
+      if (!records.length) list.innerHTML = `<div class="mini-item">ไม่มีข้อมูล</div>`;
+    }
+
+    function renderDescriptorCloud(records) {
+      const container = document.getElementById("descriptorCloud");
+      const items = topDescriptors(records, 24);
+      container.innerHTML = "";
+      if (!items.length) {
+        container.innerHTML = `<div class="tag">ยังไม่มี descriptor</div>`;
+        return;
+      }
+      items.forEach(([label, count]) => {
+        const chip = document.createElement("div");
+        chip.className = "tag";
+        chip.textContent = `${label} · ${count}`;
+        container.appendChild(chip);
+      });
+    }
+
+    function renderRankList(containerId, obj) {
+      const el = document.getElementById(containerId);
+      const items = Object.entries(obj).sort((a,b) => b[1] - a[1]);
+      el.innerHTML = "";
+      if (!items.length) {
+        el.innerHTML = `<div class="row">ไม่มีข้อมูล</div>`;
+        return;
+      }
+      items.forEach(([name, count]) => {
+        const row = document.createElement("div");
+        row.className = "row";
+        row.innerHTML = `<span>${escapeHtml(name)}</span><strong>${count}</strong>`;
+        el.appendChild(row);
+      });
+    }
+
+    function renderRecords(records) {
+      const results = document.getElementById("results");
+      results.innerHTML = "";
+
+      if (!records.length) {
+        results.innerHTML = `<div class="empty glass">ไม่พบข้อมูลที่ตรงกับเงื่อนไข</div>`;
+        return;
+      }
+
+      records.forEach(record => {
+        const descriptors = record.descriptors.length
+          ? record.descriptors.map(d => `<span class="desc">${escapeHtml(d)}</span>`).join("")
+          : `<span class="desc">ไม่มี descriptor</span>`;
+
+        const article = document.createElement("article");
+        article.className = "record glass";
+        article.innerHTML = `
+          <div class="record-top">
+            <div>
+              <h4 class="record-title">${escapeHtml(record.coffee)}</h4>
+              <div class="record-sub">${escapeHtml(record.sample_id)} · ${escapeHtml(record.cupping_date)} · ${escapeHtml(record.cupper)}</div>
+            </div>
+            <div class="pill">☕ ${escapeHtml(record.origin)} · ${escapeHtml(record.process)}</div>
+          </div>
+
+          <div class="meta">
+            <div class="meta-box"><span class="label">Sample ID</span><div class="value">${escapeHtml(record.sample_id)}</div></div>
+            <div class="meta-box"><span class="label">Date</span><div class="value">${escapeHtml(record.cupping_date)}</div></div>
+            <div class="meta-box"><span class="label">Cupper</span><div class="value">${escapeHtml(record.cupper)}</div></div>
+            <div class="meta-box"><span class="label">Session</span><div class="value">${escapeHtml(record.session)}</div></div>
+            <div class="meta-box"><span class="label">Round</span><div class="value">${escapeHtml(record.round_no)}</div></div>
+            <div class="meta-box"><span class="label">Origin</span><div class="value">${escapeHtml(record.origin)}</div></div>
+            <div class="meta-box"><span class="label">Variety</span><div class="value">${escapeHtml(record.variety)}</div></div>
+            <div class="meta-box"><span class="label">Process</span><div class="value">${escapeHtml(record.process)}</div></div>
+          </div>
+
+          <div class="desc-wrap">${descriptors}</div>
+          <div class="path">ไฟล์: ${escapeHtml(record.path)}</div>
+        `;
+        results.appendChild(article);
+      });
+    }
+
+    function destroyCharts() {
+      [dateChart, originChart, cupperChart].forEach(c => { if (c) c.destroy(); });
+    }
+
+    function chartTextColor() {
+      return getComputedStyle(document.body).getPropertyValue('--muted').trim() || '#667085';
+    }
+
+    function chartGridColor() {
+      return document.body.classList.contains('dark') ? 'rgba(255,255,255,0.10)' : 'rgba(148,163,184,0.18)';
+    }
+
+    function commonChartOptions(yTitle, showLegend = true) {
+      return {
+        responsive:true,
+        maintainAspectRatio:false,
+        scales:{
+          x:{
+            grid:{ display:false },
+            ticks:{ color:chartTextColor(), font:{ family:'inherit' } }
+          },
+          y:{
+            beginAtZero:true,
+            grid:{ color:chartGridColor() },
+            ticks:{ color:chartTextColor(), precision:0, font:{ family:'inherit' } },
+            title:{ display:true, text:yTitle, color:chartTextColor(), font:{ family:'inherit', size:12 } }
+          }
+        },
+        plugins:{
+          legend:{ display:showLegend, labels:{ color:chartTextColor(), font:{ family:'inherit' } } }
+        }
+      };
+    }
+
+    function renderCharts(records) {
+      destroyCharts();
+
+      const dateData = countByDate(records);
+      const originData = countBy(records, "origin");
+      const cupperData = countBy(records, "cupper");
+
+      dateChart = new Chart(document.getElementById("dateChart").getContext("2d"), {
+        type:"line",
+        data:{
+          labels:Object.keys(dateData),
+          datasets:[{
+            label:"Records",
+            data:Object.values(dateData),
+            tension:0.36,
+            fill:true,
+            borderWidth:3,
+            pointRadius:4,
+            pointHoverRadius:6,
+            backgroundColor:"rgba(99,102,241,0.14)",
+            borderColor:"rgba(99,102,241,0.95)",
+            pointBackgroundColor:"rgba(99,102,241,1)"
+          }]
+        },
+        options:commonChartOptions("จำนวนรายการ")
+      });
+
+      originChart = new Chart(document.getElementById("originChart").getContext("2d"), {
+        type:"doughnut",
+        data:{
+          labels:Object.keys(originData),
+          datasets:[{
+            data:Object.values(originData),
+            backgroundColor:[
+              "rgba(99,102,241,0.88)",
+              "rgba(56,189,248,0.88)",
+              "rgba(251,146,60,0.88)",
+              "rgba(34,197,94,0.88)",
+              "rgba(244,114,182,0.88)",
+              "rgba(168,85,247,0.88)",
+              "rgba(250,204,21,0.88)"
+            ],
+            borderColor:document.body.classList.contains('dark') ? "rgba(17,24,39,0.95)" : "rgba(255,255,255,0.92)",
+            borderWidth:2
+          }]
+        },
+        options:{
+          responsive:true,
+          maintainAspectRatio:false,
+          cutout:"62%",
+          plugins:{
+            legend:{
+              position:"bottom",
+              labels:{ color:chartTextColor(), padding:16, font:{ family:'inherit', size:12 } }
+            }
+          }
+        }
+      });
+
+      cupperChart = new Chart(document.getElementById("cupperChart").getContext("2d"), {
+        type:"bar",
+        data:{
+          labels:Object.keys(cupperData),
+          datasets:[{
+            label:"Records",
+            data:Object.values(cupperData),
+            borderRadius:14,
+            backgroundColor:document.body.classList.contains('dark') ? "rgba(142,162,255,0.85)" : "rgba(17,24,39,0.82)"
+          }]
+        },
+        options:commonChartOptions("จำนวนรายการ", false)
+      });
+    }
+
+    function sortRecords(records, mode) {
+      const arr = [...records];
+      if (mode === "date_asc") arr.sort((a,b) => String(a.cupping_date).localeCompare(String(b.cupping_date)));
+      else if (mode === "coffee_asc") arr.sort((a,b) => String(a.coffee).localeCompare(String(b.coffee)));
+      else if (mode === "sample_asc") arr.sort((a,b) => String(a.sample_id).localeCompare(String(b.sample_id)));
+      else arr.sort((a,b) => String(b.cupping_date).localeCompare(String(a.cupping_date)));
+      return arr;
+    }
+
+    function getFilteredRecords() {
       const keyword = document.getElementById("searchInput").value.trim().toLowerCase();
       const origin = document.getElementById("originFilter").value;
       const cupper = document.getElementById("cupperFilter").value;
+      const session = document.getElementById("sessionFilter").value;
+      const quick = document.getElementById("quickFilter").value;
+      const sortMode = document.getElementById("sortFilter").value;
 
-      const filtered = allRecords.filter(record => {
-        const haystack = [
-          record.coffee,
-          record.sample_id,
-          record.origin,
-          record.variety,
-          record.process,
-          record.cupper,
-          ...record.descriptors
-        ].join(" ").toLowerCase();
-
-        const matchKeyword = !keyword || haystack.includes(keyword);
-        const matchOrigin = !origin || record.origin === origin;
-        const matchCupper = !cupper || record.cupper === cupper;
-
-        return matchKeyword && matchOrigin && matchCupper;
+      let filtered = allRecords.filter(r => {
+        const haystack = [r.coffee,r.sample_id,r.origin,r.variety,r.process,r.cupper,r.session,...r.descriptors].join(" ").toLowerCase();
+        return (!keyword || haystack.includes(keyword))
+          && (!origin || r.origin === origin)
+          && (!cupper || r.cupper === cupper)
+          && (!session || r.session === session);
       });
 
-      document.getElementById("status").textContent = `แสดง ${filtered.length} รายการ`;
-      renderRecords(filtered);
+      filtered = sortRecords(filtered, sortMode);
+
+      if (quick === "latest") filtered = filtered.slice(0, 5);
+      if (quick === "am") filtered = filtered.filter(r => r.session.toUpperCase() === "AM");
+      if (quick === "pm") filtered = filtered.filter(r => r.session.toUpperCase() === "PM");
+
+      return filtered;
+    }
+
+    function renderAll(records) {
+      document.getElementById("status").textContent = `แสดง ${records.length} รายการ`;
+      updateHeader(records);
+      renderSpotlight(records);
+      renderRecentList(records);
+      renderDescriptorCloud(records);
+      renderRankList("originRank", countBy(records, "origin"));
+      renderRankList("cupperRank", countBy(records, "cupper"));
+      renderRankList("sessionRank", countBy(records, "session"));
+      renderCharts(records);
+      renderRecords(records);
+    }
+
+    function applyFilters() {
+      renderAll(getFilteredRecords());
+    }
+
+    function setActiveTab(tabName) {
+      document.querySelectorAll(".tab-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.tab === tabName);
+      });
+      document.querySelectorAll(".section").forEach(section => section.classList.remove("active"));
+      document.getElementById(`section-${tabName}`).classList.add("active");
     }
 
     async function init() {
-      const status = document.getElementById("status");
-
       try {
-        status.textContent = "กำลังอ่านรายชื่อไฟล์ JSON จาก GitHub...";
-
+        document.getElementById("status").textContent = "กำลังอ่านรายชื่อไฟล์ JSON จาก GitHub…";
         const jsonPaths = await fetchRepoJsonFiles();
+        totalJsonFiles = jsonPaths.length;
 
         if (!jsonPaths.length) {
-          status.textContent = "ไม่พบไฟล์ JSON ใน repo";
-          updateSummary([], 0);
-          renderRecords([]);
+          document.getElementById("heroBadge").textContent = "ไม่พบไฟล์ JSON";
+          document.getElementById("status").textContent = "ไม่พบไฟล์ JSON ใน repo";
+          renderAll([]);
           return;
         }
 
-        status.textContent = `พบ ${jsonPaths.length} ไฟล์ กำลังโหลดข้อมูล...`;
+        document.getElementById("status").textContent = `พบ ${jsonPaths.length} ไฟล์ · กำลังโหลดข้อมูล…`;
 
         const loaded = await Promise.allSettled(
           jsonPaths.map(async path => {
@@ -371,23 +1121,23 @@
         allRecords = loaded
           .filter(item => item.status === "fulfilled")
           .map(item => item.value)
-          .sort((a, b) => String(b.cupping_date).localeCompare(String(a.cupping_date)));
+          .sort((a,b) => String(b.cupping_date).localeCompare(String(a.cupping_date)));
 
-        updateSummary(allRecords, jsonPaths.length);
-        fillFilters(allRecords);
-        status.textContent = `โหลดสำเร็จ ${allRecords.length} รายการ จาก ${jsonPaths.length} ไฟล์`;
-        renderRecords(allRecords);
+        fillSelect("originFilter", allRecords.map(r => r.origin), "ทุก Origin");
+        fillSelect("cupperFilter", allRecords.map(r => r.cupper), "ทุก Cupper");
+        fillSelect("sessionFilter", allRecords.map(r => r.session), "ทุก Session");
 
+        document.getElementById("status").textContent = `โหลดสำเร็จ ${allRecords.length} รายการ จาก ${jsonPaths.length} ไฟล์`;
+        renderAll(allRecords);
       } catch (error) {
         console.error(error);
-        status.textContent = "เกิดข้อผิดพลาด: " + error.message;
+        document.getElementById("heroBadge").textContent = "เชื่อมต่อไม่สำเร็จ";
+        document.getElementById("status").textContent = "เกิดข้อผิดพลาด: " + error.message;
       }
     }
 
-    document.getElementById("searchInput").addEventListener("input", applyFilters);
-    document.getElementById("originFilter").addEventListener("change", applyFilters);
-    document.getElementById("cupperFilter").addEventListener("change", applyFilters);
-
+    applySavedTheme();
+    setupActions();
     init();
   </script>
 </body>
