@@ -38,8 +38,9 @@
       --accent-soft:rgba(142,162,255,0.18);
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+
     body{
       margin:0;
       font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Inter",Arial,sans-serif;
@@ -57,15 +58,22 @@
 
     .orb{
       position:fixed;
-      width:320px;height:320px;border-radius:999px;filter:blur(20px);
-      opacity:.42;pointer-events:none;z-index:0;animation:float 15s ease-in-out infinite;
+      width:320px;
+      height:320px;
+      border-radius:999px;
+      filter:blur(20px);
+      opacity:0.42;
+      pointer-events:none;
+      z-index:0;
+      animation:float 15s ease-in-out infinite;
     }
-    .orb.one{top:2%;left:-80px;background:radial-gradient(circle, rgba(100,149,237,0.34), transparent 60%)}
-    .orb.two{top:46%;right:-90px;background:radial-gradient(circle, rgba(255,185,122,0.26), transparent 60%);animation-delay:-5s}
-    .orb.three{bottom:-50px;left:28%;background:radial-gradient(circle, rgba(110,231,183,0.22), transparent 60%);animation-delay:-9s}
-    @keyframes float{0%,100%{transform:translateY(0) translateX(0)}50%{transform:translateY(-18px) translateX(12px)}}
+    .orb.one{ top:2%; left:-80px; background:radial-gradient(circle, rgba(100,149,237,0.34), transparent 60%); }
+    .orb.two{ top:46%; right:-90px; background:radial-gradient(circle, rgba(255,185,122,0.26), transparent 60%); animation-delay:-5s; }
+    .orb.three{ bottom:-50px; left:28%; background:radial-gradient(circle, rgba(110,231,183,0.22), transparent 60%); animation-delay:-9s; }
+    @keyframes float{ 0%,100%{transform:translateY(0) translateX(0)} 50%{transform:translateY(-18px) translateX(12px)} }
 
-    .shell{max-width:1500px;margin:0 auto;position:relative;z-index:1}
+    .shell{ max-width:1500px; margin:0 auto; position:relative; z-index:1; }
+
     .glass{
       background:var(--glass);
       border:1px solid var(--line);
@@ -75,204 +83,694 @@
     }
 
     .nav-floating{
-      position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:999;
-      display:flex;gap:10px;padding:8px;border-radius:999px;
+      position:fixed;
+      top:14px;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:999;
+      display:flex;
+      gap:10px;
+      padding:8px;
+      border-radius:999px;
       background:rgba(255,255,255,0.15);
-      backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border:1px solid rgba(255,255,255,0.2);
       box-shadow:0 10px 30px rgba(0,0,0,0.15);
     }
+
     .nav-btn{
-      padding:10px 14px;border-radius:999px;font-size:13px;text-decoration:none;color:#fff;
-      background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);
-      transition:.2s;white-space:nowrap;
+      padding:10px 14px;
+      border-radius:999px;
+      font-size:13px;
+      text-decoration:none;
+      color:#fff;
+      background:rgba(255,255,255,0.15);
+      border:1px solid rgba(255,255,255,0.2);
+      transition:0.2s;
+      white-space:nowrap;
     }
-    .nav-btn.primary{background:linear-gradient(135deg,#6ea8ff,#8f7bff);border:none}
-    .nav-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.2)}
 
-    .hero,.panel,.compare-panel,.card,.mini-panel,.list-panel,.record{
-      border-radius:30px;
-      padding:20px;
+    .nav-btn.primary{
+      background:linear-gradient(135deg,#6ea8ff,#8f7bff);
+      border:none;
+      color:#fff;
     }
-    .hero{padding:26px;margin-bottom:18px;overflow:hidden;position:relative}
+
+    .nav-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 6px 20px rgba(0,0,0,0.2);
+    }
+
+    .hero{
+      padding:26px;
+      border-radius:34px;
+      margin-bottom:18px;
+      overflow:hidden;
+      position:relative;
+    }
     .hero::after{
-      content:"";position:absolute;right:-60px;bottom:-80px;width:240px;height:240px;border-radius:999px;
-      background:radial-gradient(circle, rgba(255,255,255,0.36), transparent 68%);pointer-events:none;
+      content:"";
+      position:absolute;
+      right:-60px;
+      bottom:-80px;
+      width:240px;
+      height:240px;
+      border-radius:999px;
+      background:radial-gradient(circle, rgba(255,255,255,0.36), transparent 68%);
+      pointer-events:none;
     }
-
-    .hero-top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap}
+    .hero-top{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
     .eyebrow{
-      display:inline-flex;gap:8px;align-items:center;padding:9px 14px;border-radius:999px;
-      background:var(--chip);border:1px solid var(--line);color:var(--muted);font-size:13px;margin-bottom:12px;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:9px 14px;
+      border-radius:999px;
+      background:var(--chip);
+      border:1px solid var(--line);
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:12px;
     }
-    h1{margin:0;font-size:clamp(30px,5vw,54px);line-height:.94;letter-spacing:-.055em}
-    .hero p,.sub{color:var(--muted)}
-    .hero p{margin:12px 0 0;font-size:15px;max-width:820px}
-    .hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+    h1{
+      margin:0;
+      font-size:clamp(30px,5vw,54px);
+      line-height:0.94;
+      letter-spacing:-0.055em;
+    }
+    .hero p{
+      margin:12px 0 0;
+      color:var(--muted);
+      font-size:15px;
+      max-width:860px;
+    }
+    .hero-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
     .ghost-btn{
-      border:none;background:var(--chip);border:1px solid var(--line);color:var(--text);
-      padding:11px 14px;border-radius:999px;font:inherit;cursor:pointer;
+      border:none;
+      background:var(--chip);
+      border:1px solid var(--line);
+      color:var(--text);
+      padding:11px 14px;
+      border-radius:999px;
+      font:inherit;
+      cursor:pointer;
+      box-shadow:0 10px 24px rgba(0,0,0,0.04);
     }
 
-    .summary-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:20px}
-    .stat{padding:18px;border-radius:24px;background:var(--glass-strong);border:1px solid var(--line)}
-    .stat .k{font-size:12px;color:var(--muted);margin-bottom:8px;display:block}
-    .stat .v{font-size:34px;font-weight:780;line-height:1;letter-spacing:-.05em}
+    .summary-grid{
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      gap:12px;
+      margin-top:20px;
+    }
+    .stat{
+      padding:18px;
+      border-radius:24px;
+      background:var(--glass-strong);
+      border:1px solid var(--line);
+    }
+    .stat .k{
+      font-size:12px;
+      color:var(--muted);
+      margin-bottom:8px;
+      display:block;
+    }
+    .stat .v{
+      font-size:34px;
+      font-weight:780;
+      line-height:1;
+      letter-spacing:-0.05em;
+    }
 
-    .sticky-wrap{position:sticky;top:10px;z-index:10;margin-bottom:18px}
-    .control-shell{padding:12px;border-radius:28px}
-    .filters{display:grid;grid-template-columns:1.6fr .8fr .8fr .8fr .8fr .75fr;gap:12px;margin-bottom:12px}
-    .filter{padding:14px 16px;border-radius:18px;background:var(--chip);border:1px solid var(--line)}
+    .sticky-wrap{
+      position:sticky;
+      top:10px;
+      z-index:10;
+      margin-bottom:18px;
+    }
+    .control-shell{
+      padding:12px;
+      border-radius:28px;
+    }
+    .filters{
+      display:grid;
+      grid-template-columns:1.6fr .8fr .8fr .8fr .8fr .75fr;
+      gap:12px;
+      margin-bottom:12px;
+    }
+    .filter{
+      padding:14px 16px;
+      border-radius:18px;
+      background:var(--chip);
+      border:1px solid var(--line);
+    }
     .filter label{
-      display:block;margin-bottom:8px;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)
+      display:block;
+      margin-bottom:8px;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      color:var(--muted);
     }
-    input,select{
-      width:100%;border:none;outline:none;background:transparent;font:inherit;color:var(--text);padding:0;font-size:16px
+    input, select{
+      width:100%;
+      border:none;
+      outline:none;
+      background:transparent;
+      font:inherit;
+      color:var(--text);
+      padding:0;
+      font-size:16px;
     }
 
-    .bar-bottom{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-    .tabs,.quick-chips,.toggle-row{display:flex;gap:10px;flex-wrap:wrap}
-    .tab-btn,.chip-btn,.toggle-btn{
-      border:none;cursor:pointer;padding:10px 14px;border-radius:999px;font:inherit;font-size:13px;
-      color:var(--text);background:var(--chip);border:1px solid var(--line);
+    .bar-bottom{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
     }
-    .tab-btn.active,.toggle-btn.active{
+    .tabs, .quick-chips, .toggle-group{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .tab-btn, .chip-btn, .toggle-btn{
+      border:none;
+      cursor:pointer;
+      padding:10px 14px;
+      border-radius:999px;
+      font:inherit;
+      font-size:13px;
+      color:var(--text);
+      background:var(--chip);
+      border:1px solid var(--line);
+    }
+    .tab-btn.active,
+    .toggle-btn.active{
       background:var(--accent-soft);
       border-color:rgba(85,100,255,0.25);
       color:var(--accent);
       font-weight:700;
     }
 
-    .status{font-size:14px;color:var(--muted);margin:8px 2px 16px}
-    .section-title-lg{margin:0 0 4px;font-size:21px;letter-spacing:-.03em}
-    .sub{font-size:13px;margin-bottom:14px}
-
-    .insights-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px}
-    .insight-card{padding:16px;border-radius:22px;background:var(--chip);border:1px solid var(--line)}
-    .insight-label{
-      display:block;font-size:12px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em
+    .status{
+      font-size:14px;
+      color:var(--muted);
+      margin:8px 2px 16px;
     }
-    .insight-title{display:block;font-size:20px;line-height:1.15;letter-spacing:-.03em;margin-bottom:6px}
-    .insight-meta{font-size:13px;color:var(--muted);line-height:1.4}
 
-    .section{display:none}
-    .section.active{display:block}
+    .insights-panel,
+    .insights-chart-card,
+    .compare-panel{
+      padding:20px;
+      border-radius:30px;
+      margin-bottom:18px;
+    }
 
-    .spotlight-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:18px;margin-bottom:18px}
-    .spotlight{padding:24px;position:relative;overflow:hidden}
+    .section-title-lg{
+      margin:0 0 4px;
+      font-size:21px;
+      letter-spacing:-.03em;
+    }
+
+    .sub{
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:14px;
+    }
+
+    .insights-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+      margin-top:14px;
+    }
+
+    .insight-card{
+      padding:16px;
+      border-radius:22px;
+      background:var(--chip);
+      border:1px solid var(--line);
+    }
+
+    .insight-label{
+      display:block;
+      font-size:12px;
+      color:var(--muted);
+      margin-bottom:8px;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+    }
+
+    .insight-title{
+      display:block;
+      font-size:20px;
+      line-height:1.15;
+      letter-spacing:-.03em;
+      margin-bottom:6px;
+    }
+
+    .insight-meta{
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.4;
+    }
+
+    .section{ display:none; }
+    .section.active{ display:block; }
+
+    .spotlight-grid{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:18px;
+      margin-bottom:18px;
+    }
+    .spotlight{
+      padding:24px;
+      border-radius:32px;
+      position:relative;
+      overflow:hidden;
+    }
     .spotlight::before{
-      content:"";position:absolute;right:-34px;top:-22px;width:170px;height:170px;border-radius:999px;
+      content:"";
+      position:absolute;
+      right:-34px;
+      top:-22px;
+      width:170px;
+      height:170px;
+      border-radius:999px;
       background:radial-gradient(circle, rgba(255,255,255,0.3), transparent 70%);
     }
-    .spotlight-kicker{color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
-    .spotlight-title{font-size:42px;line-height:.96;margin:0 0 10px;letter-spacing:-.055em}
-    .spotlight-sub{color:var(--muted);font-size:15px;margin-bottom:18px}
-    .spotlight-meta{display:flex;gap:10px;flex-wrap:wrap}
+    .spotlight-kicker{
+      color:var(--muted);
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:8px;
+    }
+    .spotlight-title{
+      font-size:42px;
+      line-height:.96;
+      margin:0 0 10px;
+      letter-spacing:-.055em;
+    }
+    .spotlight-sub{
+      color:var(--muted);
+      font-size:15px;
+      margin-bottom:18px;
+    }
+    .spotlight-meta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
     .pill{
-      display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;
-      background:var(--chip);border:1px solid var(--line);font-size:13px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:var(--chip);
+      border:1px solid var(--line);
+      font-size:13px;
     }
 
-    .mini-panel h3,.card h3,.list-panel h3{margin:0 0 4px;font-size:21px;letter-spacing:-.03em}
-    .mini-list,.stat-list{display:grid;gap:10px}
-    .mini-item,.row{
-      display:flex;justify-content:space-between;align-items:center;gap:12px;
-      padding:12px 14px;border-radius:18px;background:var(--chip);border:1px solid var(--line);font-size:14px;
+    .mini-panel, .card, .list-panel{
+      padding:20px;
+      border-radius:30px;
+    }
+    .mini-panel h3,.card h3,.list-panel h3{
+      margin:0 0 4px;
+      font-size:21px;
+      letter-spacing:-.03em;
+    }
+    .mini-list{
+      display:grid;
+      gap:10px;
+    }
+    .mini-item{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding:12px 14px;
+      border-radius:18px;
+      background:var(--chip);
+      border:1px solid var(--line);
+      font-size:14px;
     }
 
-    .grid-main{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-bottom:18px}
-    .grid-secondary{display:grid;grid-template-columns:.92fr 1.08fr;gap:18px;margin-bottom:18px}
-    .chart-wrap{height:300px;position:relative}
-    .chart-wrap.compact{height:150px}
-    .descriptor-cloud{display:flex;flex-wrap:wrap;gap:10px;align-content:flex-start;min-height:300px}
+    .grid-main{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:18px;
+      margin-bottom:18px;
+    }
+    .grid-secondary{
+      display:grid;
+      grid-template-columns:.92fr 1.08fr;
+      gap:18px;
+      margin-bottom:18px;
+    }
+
+    .chart-wrap{
+      height:300px;
+      position:relative;
+    }
+
+    .chart-wrap-sm{
+      height:150px;
+      position:relative;
+    }
+
+    .descriptor-cloud{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-content:flex-start;
+      min-height:300px;
+    }
     .tag{
-      display:inline-flex;gap:8px;align-items:center;padding:10px 14px;border-radius:999px;
-      background:var(--chip);border:1px solid var(--line);font-size:13px;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:10px 14px;
+      border-radius:999px;
+      background:var(--chip);
+      border:1px solid var(--line);
+      font-size:13px;
     }
 
-    .analytics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:18px}
-    .list-panel{min-height:320px}
+    .analytics-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-bottom:18px;
+    }
+    .list-panel{
+      min-height:320px;
+    }
+    .stat-list{
+      display:grid;
+      gap:10px;
+    }
+    .row{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+      padding:12px 14px;
+      border-radius:18px;
+      background:var(--chip);
+      border:1px solid var(--line);
+      font-size:14px;
+    }
 
-    .records{display:grid;gap:16px}
-    .record-top{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:flex-start;margin-bottom:16px}
-    .record-title{margin:0;font-size:30px;line-height:1;letter-spacing:-.045em}
-    .record-sub{margin-top:8px;font-size:13px;color:var(--muted)}
-    .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
-    .meta-box{padding:14px;border-radius:18px;background:var(--chip);border:1px solid var(--line)}
+    .records{
+      display:grid;
+      gap:16px;
+    }
+    .record{
+      padding:20px;
+      border-radius:30px;
+    }
+    .record-top{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+      align-items:flex-start;
+      margin-bottom:16px;
+    }
+    .record-title{
+      margin:0;
+      font-size:30px;
+      line-height:1;
+      letter-spacing:-.045em;
+    }
+    .record-sub{
+      margin-top:8px;
+      font-size:13px;
+      color:var(--muted);
+    }
+    .meta{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      margin-bottom:14px;
+    }
+    .meta-box{
+      padding:14px;
+      border-radius:18px;
+      background:var(--chip);
+      border:1px solid var(--line);
+    }
     .meta-box .label{
-      display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px
+      display:block;
+      font-size:11px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      margin-bottom:6px;
     }
-    .meta-box .value{font-size:18px;line-height:1.2;word-break:break-word}
-    .desc-wrap{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
-    .desc{display:inline-flex;padding:9px 13px;border-radius:999px;background:var(--glass-strong);border:1px solid var(--line);font-size:13px}
-    .path{font-size:12px;color:var(--muted);word-break:break-all}
-    .empty{text-align:center;padding:26px;border-radius:26px;color:var(--muted);background:var(--glass);border:1px solid var(--line)}
+    .meta-box .value{
+      font-size:18px;
+      line-height:1.2;
+      word-break:break-word;
+    }
+    .desc-wrap{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:14px;
+    }
+    .desc{
+      display:inline-flex;
+      padding:9px 13px;
+      border-radius:999px;
+      background:var(--glass-strong);
+      border:1px solid var(--line);
+      font-size:13px;
+    }
+    .path{
+      font-size:12px;
+      color:var(--muted);
+      word-break:break-all;
+    }
+    .empty{
+      text-align:center;
+      padding:26px;
+      border-radius:26px;
+      color:var(--muted);
+      background:var(--glass);
+      border:1px solid var(--line);
+    }
 
     .compare-controls{
       display:grid;
       grid-template-columns:1fr 1fr auto;
       gap:12px;
-      margin-bottom:18px;
+      margin-bottom:16px;
       align-items:end;
     }
 
+    .compare-control{
+      padding:14px 16px;
+      border-radius:18px;
+      background:var(--chip);
+      border:1px solid var(--line);
+    }
+
+    .compare-control label{
+      display:block;
+      margin-bottom:8px;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      color:var(--muted);
+    }
+
     #batchCompareTable{
-      width:100%;border-collapse:separate;border-spacing:0 10px;min-width:520px;
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0 10px;
+      min-width:520px;
     }
-    #batchCompareTable th,#batchCompareTable td{
-      background:var(--chip);border:1px solid var(--line);padding:12px;font-size:14px;text-align:left;
+    #batchCompareTable th,
+    #batchCompareTable td{
+      background:var(--chip);
+      border:1px solid var(--line);
+      padding:12px;
+      font-size:14px;
+      text-align:left;
     }
-    #batchCompareTable th:first-child,#batchCompareTable td:first-child{border-radius:14px 0 0 14px}
-    #batchCompareTable th:last-child,#batchCompareTable td:last-child{border-radius:0 14px 14px 0}
-    .compare-up{color:var(--up);font-weight:700}
-    .compare-down{color:var(--down);font-weight:700}
-    .compare-flat{color:var(--muted);font-weight:700}
+    #batchCompareTable th:first-child,
+    #batchCompareTable td:first-child{
+      border-radius:14px 0 0 14px;
+    }
+    #batchCompareTable th:last-child,
+    #batchCompareTable td:last-child{
+      border-radius:0 14px 14px 0;
+    }
+    .compare-up{ color:var(--up); font-weight:700; }
+    .compare-down{ color:var(--down); font-weight:700; }
+    .compare-flat{ color:var(--muted); font-weight:700; }
 
     @media (max-width:1200px){
-      .summary-grid{grid-template-columns:repeat(3,1fr)}
-      .filters{grid-template-columns:repeat(2,1fr)}
-      .spotlight-grid,.grid-main,.grid-secondary,.analytics-grid{grid-template-columns:1fr}
-      .meta{grid-template-columns:repeat(2,1fr)}
-      .compare-controls{grid-template-columns:1fr 1fr}
+      .summary-grid{ grid-template-columns:repeat(3,1fr); }
+      .filters{ grid-template-columns:repeat(2,1fr); }
+      .spotlight-grid,.grid-main,.grid-secondary,.analytics-grid{ grid-template-columns:1fr; }
+      .meta{ grid-template-columns:repeat(2,1fr); }
+      .compare-controls{ grid-template-columns:1fr; }
     }
 
     @media (max-width:1100px){
-      .insights-grid{grid-template-columns:repeat(2,1fr)}
+      .insights-grid{ grid-template-columns:repeat(2,1fr); }
     }
 
     @media (max-width:768px){
-      body{padding:12px;padding-top:72px}
-      .nav-floating{top:10px;gap:6px;padding:6px;width:max-content;max-width:calc(100vw - 24px)}
-      .nav-btn{font-size:12px;padding:8px 12px}
-      .hero{padding:18px;border-radius:24px;margin-bottom:14px}
-      .summary-grid{grid-template-columns:1fr 1fr;gap:10px}
-      .stat{padding:14px;border-radius:18px}
-      .stat .v{font-size:26px}
-      .sticky-wrap{position:static;top:auto}
-      .control-shell{padding:10px;border-radius:22px}
-      .filters{grid-template-columns:1fr;gap:10px;margin-bottom:10px}
-      .filter{padding:12px 14px;border-radius:16px}
-      .bar-bottom{flex-direction:column;align-items:stretch;gap:10px}
-      .tabs,.quick-chips,.toggle-row{
-        width:100%;justify-content:flex-start;overflow-x:auto;padding-bottom:2px;flex-wrap:nowrap
+      body{
+        padding:12px;
+        padding-top:72px;
       }
-      .tab-btn,.chip-btn,.toggle-btn{white-space:nowrap;flex:0 0 auto}
-      .panel,.compare-panel,.card,.spotlight,.mini-panel,.list-panel,.record{padding:16px;border-radius:22px}
-      .insights-grid{grid-template-columns:1fr;gap:10px}
-      .insight-card{border-radius:18px}
-      .insight-title{font-size:18px}
-      .chart-wrap{height:240px}
-      .chart-wrap.compact{height:140px}
-      .record-title{font-size:24px}
-      .meta{grid-template-columns:1fr 1fr}
-      .compare-controls{grid-template-columns:1fr}
+
+      .nav-floating{
+        top:10px;
+        gap:6px;
+        padding:6px;
+        width:max-content;
+        max-width:calc(100vw - 24px);
+      }
+
+      .nav-btn{
+        font-size:12px;
+        padding:8px 12px;
+      }
+
+      .hero{
+        padding:18px;
+        border-radius:24px;
+        margin-bottom:14px;
+      }
+
+      .summary-grid{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+      }
+
+      .stat{
+        padding:14px;
+        border-radius:18px;
+      }
+
+      .stat .v{
+        font-size:26px;
+      }
+
+      .sticky-wrap{
+        position:static;
+        top:auto;
+      }
+
+      .control-shell{
+        padding:10px;
+        border-radius:22px;
+      }
+
+      .filters{
+        grid-template-columns:1fr;
+        gap:10px;
+        margin-bottom:10px;
+      }
+
+      .filter{
+        padding:12px 14px;
+        border-radius:16px;
+      }
+
+      .bar-bottom{
+        flex-direction:column;
+        align-items:stretch;
+        gap:10px;
+      }
+
+      .tabs,
+      .quick-chips,
+      .toggle-group{
+        width:100%;
+        justify-content:flex-start;
+        overflow-x:auto;
+        padding-bottom:2px;
+        flex-wrap:nowrap;
+      }
+
+      .tab-btn,
+      .chip-btn,
+      .toggle-btn{
+        white-space:nowrap;
+        flex:0 0 auto;
+      }
+
+      .insights-panel,
+      .insights-chart-card,
+      .compare-panel,
+      .card,
+      .spotlight,
+      .mini-panel,
+      .list-panel,
+      .record{
+        padding:16px;
+        border-radius:22px;
+      }
+
+      .insights-grid{
+        grid-template-columns:1fr;
+        gap:10px;
+      }
+
+      .insight-card{
+        border-radius:18px;
+      }
+
+      .insight-title{
+        font-size:18px;
+      }
+
+      .chart-wrap{
+        height:240px;
+      }
+
+      .chart-wrap-sm{
+        height:120px;
+      }
+
+      .record-title{
+        font-size:24px;
+      }
+
+      .meta{
+        grid-template-columns:1fr 1fr;
+      }
     }
 
     @media (max-width:740px){
-      .summary-grid{grid-template-columns:1fr 1fr}
-      .filters{grid-template-columns:1fr}
-      .meta{grid-template-columns:1fr}
-      .spotlight-title{font-size:30px}
+      .summary-grid{ grid-template-columns:1fr 1fr; }
+      .filters{ grid-template-columns:1fr; }
+      .meta{ grid-template-columns:1fr; }
+      .spotlight-title{ font-size:30px; }
     }
   </style>
 </head>
@@ -292,7 +790,7 @@
         <div>
           <div class="eyebrow">✦ Final Pro Max · Glass + Analytics</div>
           <h1>Casa Cupping Dashboard</h1>
-          <p>รวม insights, average insights, compare แบบเลือก sample id เอง และเลือกโหมด Latest only / Average all</p>
+          <p>รวม overview, insights, average insights, compare batches แบบเลือก sample id เอง และเลือกได้ระหว่าง latest only หรือ average all</p>
         </div>
         <div class="hero-actions">
           <button class="ghost-btn" id="themeToggle">🌙 Dark</button>
@@ -366,25 +864,29 @@
 
     <div class="status" id="status">กำลังโหลดข้อมูล…</div>
 
-    <section class="panel glass">
+    <section class="glass insights-panel">
       <h3 class="section-title-lg">Top Batch Insights</h3>
-      <div class="sub">record ที่เด่นสุดในแต่ละหัวข้อ</div>
+      <div class="sub">สรุป batch เด่นจากข้อมูล intensity</div>
+
       <div class="insights-grid">
         <div class="insight-card">
           <span class="insight-label">Fragrance/Aroma สูงสุด</span>
           <strong class="insight-title" id="insightFragranceAroma">-</strong>
           <div class="insight-meta" id="insightFragranceAromaMeta">-</div>
         </div>
+
         <div class="insight-card">
           <span class="insight-label">Acidity สูงสุด</span>
           <strong class="insight-title" id="insightAcidity">-</strong>
           <div class="insight-meta" id="insightAcidityMeta">-</div>
         </div>
+
         <div class="insight-card">
           <span class="insight-label">Sweetness สูงสุด</span>
           <strong class="insight-title" id="insightSweetness">-</strong>
           <div class="insight-meta" id="insightSweetnessMeta">-</div>
         </div>
+
         <div class="insight-card">
           <span class="insight-label">Mouthfeel ดีสุด</span>
           <strong class="insight-title" id="insightMouthfeel">-</strong>
@@ -393,25 +895,29 @@
       </div>
     </section>
 
-    <section class="panel glass">
+    <section class="glass insights-panel">
       <h3 class="section-title-lg">Average Insights</h3>
       <div class="sub">ค่าเฉลี่ยรวมจากทุก record ที่มีข้อมูล intensity จริง</div>
+
       <div class="insights-grid">
         <div class="insight-card">
           <span class="insight-label">Avg Fragrance/Aroma</span>
           <strong class="insight-title" id="avgInsightFragranceAroma">-</strong>
           <div class="insight-meta" id="avgInsightFragranceAromaMeta">-</div>
         </div>
+
         <div class="insight-card">
           <span class="insight-label">Avg Acidity</span>
           <strong class="insight-title" id="avgInsightAcidity">-</strong>
           <div class="insight-meta" id="avgInsightAcidityMeta">-</div>
         </div>
+
         <div class="insight-card">
           <span class="insight-label">Avg Sweetness</span>
           <strong class="insight-title" id="avgInsightSweetness">-</strong>
           <div class="insight-meta" id="avgInsightSweetnessMeta">-</div>
         </div>
+
         <div class="insight-card">
           <span class="insight-label">Avg Mouthfeel</span>
           <strong class="insight-title" id="avgInsightMouthfeel">-</strong>
@@ -420,33 +926,36 @@
       </div>
     </section>
 
-    <section class="panel glass">
-      <h3 class="section-title-lg">Average Insights Graph</h3>
-      <div class="sub">ภาพรวมค่าเฉลี่ย 4 หัวข้อ ใช้พื้นที่น้อยลง</div>
-      <div class="chart-wrap compact"><canvas id="averageInsightsChart"></canvas></div>
-    </section>
-
-    <section class="panel glass">
+    <section class="glass insights-chart-card">
       <h3 class="section-title-lg">Insights Graph</h3>
-      <div class="sub">เปรียบเทียบค่าของ batch ที่เด่นสุดในแต่ละหัวข้อ ใช้พื้นที่น้อยลง</div>
-      <div class="chart-wrap compact"><canvas id="insightsChart"></canvas></div>
+      <div class="sub">เปรียบเทียบค่าของ batch ที่เด่นสุดในแต่ละหัวข้อ</div>
+      <div class="chart-wrap-sm"><canvas id="insightsChart"></canvas></div>
     </section>
 
-    <section class="compare-panel glass">
+    <section class="glass insights-chart-card">
+      <h3 class="section-title-lg">Average Insights Graph</h3>
+      <div class="sub">กราฟค่าเฉลี่ยรวม 4 หัวข้อของทุก record</div>
+      <div class="chart-wrap-sm"><canvas id="averageInsightsChart"></canvas></div>
+    </section>
+
+    <section class="glass compare-panel">
       <h3 class="section-title-lg">Batch Compare</h3>
-      <div class="sub">เลือก sample id เอง และสลับโหมด Latest only / Average all ได้</div>
+      <div class="sub">เลือก sample id เอง และสลับระหว่าง latest only หรือ average all ได้</div>
 
       <div class="compare-controls">
-        <div class="filter">
+        <div class="compare-control">
           <label>Sample A</label>
           <select id="compareSampleA"></select>
         </div>
-        <div class="filter">
+
+        <div class="compare-control">
           <label>Sample B</label>
           <select id="compareSampleB"></select>
         </div>
-        <div>
-          <div class="toggle-row">
+
+        <div class="compare-control">
+          <label>Mode</label>
+          <div class="toggle-group">
             <button class="toggle-btn active" data-compare-mode="average">Average all</button>
             <button class="toggle-btn" data-compare-mode="latest">Latest only</button>
           </div>
@@ -456,27 +965,27 @@
       <div class="grid-main" style="margin-bottom:0;">
         <div class="card glass">
           <h3>Radar Compare</h3>
-          <div class="sub">Fragrance/Aroma · Acidity · Sweetness · Mouthfeel</div>
+          <div class="sub">เปรียบเทียบ 4 หัวข้อหลัก</div>
           <div class="chart-wrap"><canvas id="batchCompareRadar"></canvas></div>
         </div>
 
         <div class="card glass">
           <h3>Bar Compare</h3>
-          <div class="sub">ดูค่าแต่ละหัวข้อแบบตรงๆ</div>
+          <div class="sub">ดูคะแนนแต่ละหัวข้อแบบตรงๆ</div>
           <div class="chart-wrap"><canvas id="batchCompareBar"></canvas></div>
         </div>
       </div>
 
       <div class="card glass" style="margin-top:18px;">
         <h3>Summary Table</h3>
-        <div class="sub">ตารางสรุปเปรียบเทียบระหว่าง 2 sample id</div>
+        <div class="sub" id="compareSummarySub">ค่า intensity ของ batch ที่เลือก</div>
         <div style="overflow-x:auto;">
           <table id="batchCompareTable">
             <thead>
               <tr>
                 <th>Metric</th>
-                <th id="compareTableHeadA">A</th>
-                <th id="compareTableHeadB">B</th>
+                <th id="compareHeadA">A</th>
+                <th id="compareHeadB">B</th>
                 <th>Diff</th>
               </tr>
             </thead>
@@ -565,8 +1074,6 @@
 
     let allRecords = [];
     let totalJsonFiles = 0;
-    let compareMode = "average";
-
     let dateChart = null;
     let originChart = null;
     let cupperChart = null;
@@ -574,6 +1081,7 @@
     let averageInsightsChart = null;
     let batchCompareRadar = null;
     let batchCompareBar = null;
+    let compareMode = "average";
 
     function applySavedTheme() {
       const saved = localStorage.getItem("casaTheme");
@@ -582,8 +1090,8 @@
     }
 
     function updateThemeButton() {
-      document.getElementById("themeToggle").textContent =
-        document.body.classList.contains("dark") ? "☀️ Light" : "🌙 Dark";
+      const btn = document.getElementById("themeToggle");
+      btn.textContent = document.body.classList.contains("dark") ? "☀️ Light" : "🌙 Dark";
     }
 
     function setupActions() {
@@ -605,15 +1113,18 @@
         });
       });
 
-      ["searchInput","originFilter","cupperFilter","sessionFilter","sortFilter","quickFilter","compareSampleA","compareSampleB"].forEach(id => {
+      ["searchInput","originFilter","cupperFilter","sessionFilter","sortFilter","quickFilter"].forEach(id => {
         document.getElementById(id).addEventListener(id === "searchInput" ? "input" : "change", applyFilters);
       });
+
+      document.getElementById("compareSampleA").addEventListener("change", () => renderBatchCompare(getFilteredRecords()));
+      document.getElementById("compareSampleB").addEventListener("change", () => renderBatchCompare(getFilteredRecords()));
 
       document.querySelectorAll(".toggle-btn").forEach(btn => {
         btn.addEventListener("click", () => {
           compareMode = btn.dataset.compareMode;
-          document.querySelectorAll(".toggle-btn").forEach(b => b.classList.toggle("active", b === btn));
-          applyFilters();
+          document.querySelectorAll(".toggle-btn").forEach(b => b.classList.toggle("active", b.dataset.compareMode === compareMode));
+          renderBatchCompare(getFilteredRecords());
         });
       });
     }
@@ -654,6 +1165,7 @@
       const keys = ["fragrance","aroma","flavor","aftertaste","acidity","sweetness","mouthfeel"];
       const out = {};
       let hasAny = false;
+
       keys.forEach(key => {
         const value = intensity[key];
         if (typeof value === "number" && !Number.isNaN(value)) {
@@ -661,6 +1173,7 @@
           hasAny = true;
         }
       });
+
       return hasAny ? out : null;
     }
 
@@ -700,8 +1213,7 @@
 
     function fillSelect(id, values, firstLabel) {
       const select = document.getElementById(id);
-      const current = select.value;
-      const unique = [...new Set(values.filter(v => v && v !== "-"))].sort((a,b) => a.localeCompare(b, undefined, { numeric:true }));
+      const unique = [...new Set(values.filter(v => v && v !== "-"))].sort((a,b)=>a.localeCompare(b, undefined, {numeric:true}));
       select.innerHTML = `<option value="">${firstLabel}</option>`;
       unique.forEach(v => {
         const option = document.createElement("option");
@@ -709,23 +1221,35 @@
         option.textContent = v;
         select.appendChild(option);
       });
-      if (unique.includes(current)) select.value = current;
     }
 
-    function fillCompareSelects(sampleIds) {
-      fillSelect("compareSampleA", sampleIds, "เลือก Sample A");
-      fillSelect("compareSampleB", sampleIds, "เลือก Sample B");
-
+    function fillCompareSelects(records) {
+      const sampleIds = [...new Set(records.map(r => r.sample_id).filter(v => v && v !== "-"))].sort((a,b)=>a.localeCompare(b, undefined, {numeric:true}));
       const a = document.getElementById("compareSampleA");
       const b = document.getElementById("compareSampleB");
-      const unique = [...new Set(sampleIds.filter(v => v && v !== "-"))].sort((x,y) => x.localeCompare(y, undefined, { numeric:true }));
 
-      if (!a.value && unique.includes("B04")) a.value = "B04";
-      if (!b.value && unique.includes("B06")) b.value = "B06";
+      const currentA = a.value;
+      const currentB = b.value;
 
-      if (!a.value && unique[0]) a.value = unique[0];
-      if (!b.value && unique[1]) b.value = unique[1];
-      if (!b.value && unique[0]) b.value = unique[0];
+      a.innerHTML = "";
+      b.innerHTML = "";
+
+      sampleIds.forEach(id => {
+        const oa = document.createElement("option");
+        oa.value = id;
+        oa.textContent = id;
+        a.appendChild(oa);
+
+        const ob = document.createElement("option");
+        ob.value = id;
+        ob.textContent = id;
+        b.appendChild(ob);
+      });
+
+      if (sampleIds.length) {
+        a.value = sampleIds.includes(currentA) ? currentA : (sampleIds.includes("B04") ? "B04" : sampleIds[0]);
+        b.value = sampleIds.includes(currentB) ? currentB : (sampleIds.includes("B06") ? "B06" : sampleIds[Math.min(1, sampleIds.length - 1)]);
+      }
     }
 
     function countBy(records, key) {
@@ -777,16 +1301,25 @@
       const valid = records
         .map(record => ({ record, value: scorer(record) }))
         .filter(item => item.value !== null && !Number.isNaN(item.value));
+
       if (!valid.length) return null;
+
       valid.sort((a, b) => mode === "max" ? b.value - a.value : a.value - b.value);
       return valid[0];
     }
 
     function getAverageValue(records, scorer) {
-      const valid = records.map(record => scorer(record)).filter(value => value !== null && !Number.isNaN(value));
+      const valid = records
+        .map(record => scorer(record))
+        .filter(value => value !== null && !Number.isNaN(value));
+
       if (!valid.length) return null;
+
       const sum = valid.reduce((acc, value) => acc + value, 0);
-      return { average: sum / valid.length, count: valid.length };
+      return {
+        average: sum / valid.length,
+        count: valid.length
+      };
     }
 
     function insightTitle(record) {
@@ -803,22 +1336,44 @@
       const sweetnessTop = pickExtremeRecord(records, r => getIntensityValue(r, "sweetness"), "max");
       const mouthfeelTop = pickExtremeRecord(records, r => getIntensityValue(r, "mouthfeel"), "max");
 
-      setInsightCard("insightFragranceAroma","insightFragranceAromaMeta",fragranceAromaTop,"Avg F/A");
-      setInsightCard("insightAcidity","insightAcidityMeta",acidityTop,"Acidity");
-      setInsightCard("insightSweetness","insightSweetnessMeta",sweetnessTop,"Sweetness");
-      setInsightCard("insightMouthfeel","insightMouthfeelMeta",mouthfeelTop,"Mouthfeel");
-
-      renderInsightsChart({ fragranceAromaTop, acidityTop, sweetnessTop, mouthfeelTop });
-    }
-
-    function setInsightCard(titleId, metaId, item, label) {
-      if (item) {
-        document.getElementById(titleId).textContent = insightTitle(item.record);
-        document.getElementById(metaId).textContent = insightMeta(item.record, item.value, label);
+      if (fragranceAromaTop) {
+        document.getElementById("insightFragranceAroma").textContent = insightTitle(fragranceAromaTop.record);
+        document.getElementById("insightFragranceAromaMeta").textContent = insightMeta(fragranceAromaTop.record, fragranceAromaTop.value, "Avg F/A");
       } else {
-        document.getElementById(titleId).textContent = "-";
-        document.getElementById(metaId).textContent = "ไม่มีข้อมูล intensity";
+        document.getElementById("insightFragranceAroma").textContent = "-";
+        document.getElementById("insightFragranceAromaMeta").textContent = "ไม่มีข้อมูล intensity";
       }
+
+      if (acidityTop) {
+        document.getElementById("insightAcidity").textContent = insightTitle(acidityTop.record);
+        document.getElementById("insightAcidityMeta").textContent = insightMeta(acidityTop.record, acidityTop.value, "Acidity");
+      } else {
+        document.getElementById("insightAcidity").textContent = "-";
+        document.getElementById("insightAcidityMeta").textContent = "ไม่มีข้อมูล intensity";
+      }
+
+      if (sweetnessTop) {
+        document.getElementById("insightSweetness").textContent = insightTitle(sweetnessTop.record);
+        document.getElementById("insightSweetnessMeta").textContent = insightMeta(sweetnessTop.record, sweetnessTop.value, "Sweetness");
+      } else {
+        document.getElementById("insightSweetness").textContent = "-";
+        document.getElementById("insightSweetnessMeta").textContent = "ไม่มีข้อมูล intensity";
+      }
+
+      if (mouthfeelTop) {
+        document.getElementById("insightMouthfeel").textContent = insightTitle(mouthfeelTop.record);
+        document.getElementById("insightMouthfeelMeta").textContent = insightMeta(mouthfeelTop.record, mouthfeelTop.value, "Mouthfeel");
+      } else {
+        document.getElementById("insightMouthfeel").textContent = "-";
+        document.getElementById("insightMouthfeelMeta").textContent = "ไม่มีข้อมูล intensity";
+      }
+
+      renderInsightsChart({
+        fragranceAromaTop,
+        acidityTop,
+        sweetnessTop,
+        mouthfeelTop
+      });
     }
 
     function renderAverageInsights(records) {
@@ -827,42 +1382,57 @@
       const avgSweetness = getAverageValue(records, r => getIntensityValue(r, "sweetness"));
       const avgMouthfeel = getAverageValue(records, r => getIntensityValue(r, "mouthfeel"));
 
-      setAverageCard("avgInsightFragranceAroma","avgInsightFragranceAromaMeta",avgFragranceAroma);
-      setAverageCard("avgInsightAcidity","avgInsightAcidityMeta",avgAcidity);
-      setAverageCard("avgInsightSweetness","avgInsightSweetnessMeta",avgSweetness);
-      setAverageCard("avgInsightMouthfeel","avgInsightMouthfeelMeta",avgMouthfeel);
+      if (avgFragranceAroma) {
+        document.getElementById("avgInsightFragranceAroma").textContent = avgFragranceAroma.average.toFixed(2);
+        document.getElementById("avgInsightFragranceAromaMeta").textContent = `คำนวณจาก ${avgFragranceAroma.count} record`;
+      } else {
+        document.getElementById("avgInsightFragranceAroma").textContent = "-";
+        document.getElementById("avgInsightFragranceAromaMeta").textContent = "ไม่มีข้อมูล intensity";
+      }
+
+      if (avgAcidity) {
+        document.getElementById("avgInsightAcidity").textContent = avgAcidity.average.toFixed(2);
+        document.getElementById("avgInsightAcidityMeta").textContent = `คำนวณจาก ${avgAcidity.count} record`;
+      } else {
+        document.getElementById("avgInsightAcidity").textContent = "-";
+        document.getElementById("avgInsightAcidityMeta").textContent = "ไม่มีข้อมูล intensity";
+      }
+
+      if (avgSweetness) {
+        document.getElementById("avgInsightSweetness").textContent = avgSweetness.average.toFixed(2);
+        document.getElementById("avgInsightSweetnessMeta").textContent = `คำนวณจาก ${avgSweetness.count} record`;
+      } else {
+        document.getElementById("avgInsightSweetness").textContent = "-";
+        document.getElementById("avgInsightSweetnessMeta").textContent = "ไม่มีข้อมูล intensity";
+      }
+
+      if (avgMouthfeel) {
+        document.getElementById("avgInsightMouthfeel").textContent = avgMouthfeel.average.toFixed(2);
+        document.getElementById("avgInsightMouthfeelMeta").textContent = `คำนวณจาก ${avgMouthfeel.count} record`;
+      } else {
+        document.getElementById("avgInsightMouthfeel").textContent = "-";
+        document.getElementById("avgInsightMouthfeelMeta").textContent = "ไม่มีข้อมูล intensity";
+      }
 
       renderAverageInsightsChart({
-        fragranceAroma: avgFragranceAroma?.average ?? 0,
-        acidity: avgAcidity?.average ?? 0,
-        sweetness: avgSweetness?.average ?? 0,
-        mouthfeel: avgMouthfeel?.average ?? 0
+        avgFragranceAroma,
+        avgAcidity,
+        avgSweetness,
+        avgMouthfeel
       });
     }
 
-    function setAverageCard(titleId, metaId, item) {
-      if (item) {
-        document.getElementById(titleId).textContent = item.average.toFixed(2);
-        document.getElementById(metaId).textContent = `คำนวณจาก ${item.count} record`;
-      } else {
-        document.getElementById(titleId).textContent = "-";
-        document.getElementById(metaId).textContent = "ไม่มีข้อมูล intensity";
-      }
+    function destroyInsightsChart() {
+      if (insightsChart) insightsChart.destroy();
     }
 
-    function destroyInsightsChart() { if (insightsChart) insightsChart.destroy(); }
-    function destroyAverageInsightsChart() { if (averageInsightsChart) averageInsightsChart.destroy(); }
-
-    function chartTextColor() {
-      return getComputedStyle(document.body).getPropertyValue('--muted').trim() || '#667085';
-    }
-
-    function chartGridColor() {
-      return document.body.classList.contains('dark') ? 'rgba(255,255,255,0.10)' : 'rgba(148,163,184,0.18)';
+    function destroyAverageInsightsChart() {
+      if (averageInsightsChart) averageInsightsChart.destroy();
     }
 
     function renderInsightsChart(insightWinners) {
       destroyInsightsChart();
+
       const items = [
         { label: "Fragrance/Aroma", winner: insightWinners.fragranceAromaTop },
         { label: "Acidity", winner: insightWinners.acidityTop },
@@ -870,14 +1440,17 @@
         { label: "Mouthfeel", winner: insightWinners.mouthfeelTop }
       ];
 
+      const labels = items.map(item => item.label);
+      const values = items.map(item => item.winner ? item.winner.value : 0);
+
       insightsChart = new Chart(document.getElementById("insightsChart").getContext("2d"), {
         type: "bar",
         data: {
-          labels: items.map(i => i.label),
+          labels,
           datasets: [{
             label: "Top batch score",
-            data: items.map(i => i.winner ? i.winner.value : 0),
-            borderRadius: 12,
+            data: values,
+            borderRadius: 10,
             backgroundColor: [
               "rgba(99,102,241,0.88)",
               "rgba(56,189,248,0.88)",
@@ -886,98 +1459,129 @@
             ]
           }]
         },
-        options: compactBarOptions("Intensity", items)
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: chartTextColor(), font: { family: "inherit" } }
+            },
+            y: {
+              beginAtZero: true,
+              suggestedMax: 15,
+              grid: { color: chartGridColor() },
+              ticks: { color: chartTextColor(), font: { family: "inherit" } }
+            }
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  const item = items[context.dataIndex];
+                  if (!item.winner) return "ไม่มีข้อมูล";
+                  const r = item.winner.record;
+                  return `${item.winner.value.toFixed(1)} · ${r.sample_id} · ${r.coffee}`;
+                }
+              }
+            }
+          }
+        }
       });
     }
 
-    function renderAverageInsightsChart(avgValues) {
+    function renderAverageInsightsChart(avgData) {
       destroyAverageInsightsChart();
+
+      const labels = ["Fragrance/Aroma", "Acidity", "Sweetness", "Mouthfeel"];
+      const values = [
+        avgData.avgFragranceAroma ? avgData.avgFragranceAroma.average : 0,
+        avgData.avgAcidity ? avgData.avgAcidity.average : 0,
+        avgData.avgSweetness ? avgData.avgSweetness.average : 0,
+        avgData.avgMouthfeel ? avgData.avgMouthfeel.average : 0
+      ];
+
       averageInsightsChart = new Chart(document.getElementById("averageInsightsChart").getContext("2d"), {
         type: "bar",
         data: {
-          labels: ["Fragrance/Aroma", "Acidity", "Sweetness", "Mouthfeel"],
+          labels,
           datasets: [{
-            label: "Average",
-            data: [avgValues.fragranceAroma, avgValues.acidity, avgValues.sweetness, avgValues.mouthfeel],
-            borderRadius: 12,
+            label: "Average score",
+            data: values,
+            borderRadius: 10,
             backgroundColor: [
-              "rgba(99,102,241,0.75)",
-              "rgba(56,189,248,0.75)",
-              "rgba(251,146,60,0.75)",
-              "rgba(34,197,94,0.75)"
+              "rgba(99,102,241,0.88)",
+              "rgba(56,189,248,0.88)",
+              "rgba(251,146,60,0.88)",
+              "rgba(34,197,94,0.88)"
             ]
           }]
         },
-        options: compactBarOptions("Average")
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: chartTextColor(), font: { family: "inherit" } }
+            },
+            y: {
+              beginAtZero: true,
+              suggestedMax: 15,
+              grid: { color: chartGridColor() },
+              ticks: { color: chartTextColor(), font: { family: "inherit" } }
+            }
+          },
+          plugins: {
+            legend: { display: false }
+          }
+        }
       });
     }
 
-    function compactBarOptions(yTitle, items = null) {
-      return {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          x: {
-            grid: { display: false },
-            ticks: { color: chartTextColor(), font: { family: "inherit" } }
-          },
-          y: {
-            beginAtZero: true,
-            suggestedMax: 15,
-            grid: { color: chartGridColor() },
-            ticks: { color: chartTextColor(), font: { family: "inherit" } },
-            title: {
-              display: true,
-              text: yTitle,
-              color: chartTextColor(),
-              font: { family: "inherit", size: 12 }
-            }
-          }
-        },
-        plugins: {
-          legend: { display: false },
-          tooltip: items ? {
-            callbacks: {
-              label: function(context) {
-                const item = items[context.dataIndex];
-                if (!item.winner) return "ไม่มีข้อมูล";
-                return `${item.winner.value.toFixed(1)} · ${item.winner.record.sample_id} · ${item.winner.record.coffee}`;
-              }
-            }
-          } : {}
-        }
-      };
-    }
-
-    function getRecordsBySampleId(records, sampleId) {
-      return records
-        .filter(r => String(r.sample_id).trim().toLowerCase() === String(sampleId).trim().toLowerCase())
-        .sort((a,b) => String(b.cupping_date).localeCompare(String(a.cupping_date)));
+    function getLatestRecordBySampleId(records, sampleId) {
+      const group = records
+        .filter(r => String(r.sample_id).trim().toLowerCase() === sampleId.toLowerCase())
+        .sort((a, b) => String(b.cupping_date).localeCompare(String(a.cupping_date)));
+      return group.length ? group[0] : null;
     }
 
     function getBatchAverage(records, sampleId) {
-      const group = getRecordsBySampleId(records, sampleId);
+      const group = records.filter(r =>
+        String(r.sample_id).trim().toLowerCase() === sampleId.toLowerCase()
+      );
+
       if (!group.length) return null;
 
-      const values = { fragranceAroma: [], acidity: [], sweetness: [], mouthfeel: [] };
+      const values = {
+        fragranceAroma: [],
+        acidity: [],
+        sweetness: [],
+        mouthfeel: []
+      };
+
       group.forEach(r => {
         const fa = getFragranceAromaCombined(r);
         const ac = getIntensityValue(r, "acidity");
         const sw = getIntensityValue(r, "sweetness");
         const mf = getIntensityValue(r, "mouthfeel");
+
         if (fa !== null) values.fragranceAroma.push(fa);
         if (ac !== null) values.acidity.push(ac);
         if (sw !== null) values.sweetness.push(sw);
         if (mf !== null) values.mouthfeel.push(mf);
       });
 
-      const avg = arr => arr.length ? arr.reduce((a,b)=>a+b,0)/arr.length : null;
+      function avg(arr) {
+        if (!arr.length) return null;
+        return arr.reduce((a,b)=>a+b,0) / arr.length;
+      }
 
       return {
-        sample_id: String(sampleId).toUpperCase(),
+        sample_id: sampleId.toUpperCase(),
         count: group.length,
         mode: "average",
-        label: `${String(sampleId).toUpperCase()} avg (n=${group.length})`,
         fragranceAroma: avg(values.fragranceAroma),
         acidity: avg(values.acidity),
         sweetness: avg(values.sweetness),
@@ -985,26 +1589,25 @@
       };
     }
 
-    function getLatestBatchRecord(records, sampleId) {
-      const group = getRecordsBySampleId(records, sampleId);
-      if (!group.length) return null;
-      const r = group[0];
+    function getBatchLatest(records, sampleId) {
+      const record = getLatestRecordBySampleId(records, sampleId);
+      if (!record) return null;
+
       return {
-        sample_id: String(sampleId).toUpperCase(),
+        sample_id: sampleId.toUpperCase(),
         count: 1,
         mode: "latest",
-        label: `${String(sampleId).toUpperCase()} latest`,
-        record: r,
-        fragranceAroma: getFragranceAromaCombined(r),
-        acidity: getIntensityValue(r, "acidity"),
-        sweetness: getIntensityValue(r, "sweetness"),
-        mouthfeel: getIntensityValue(r, "mouthfeel")
+        sourceRecord: record,
+        fragranceAroma: getFragranceAromaCombined(record),
+        acidity: getIntensityValue(record, "acidity"),
+        sweetness: getIntensityValue(record, "sweetness"),
+        mouthfeel: getIntensityValue(record, "mouthfeel")
       };
     }
 
-    function getCompareBatch(records, sampleId) {
+    function getCompareData(records, sampleId) {
       return compareMode === "latest"
-        ? getLatestBatchRecord(records, sampleId)
+        ? getBatchLatest(records, sampleId)
         : getBatchAverage(records, sampleId);
     }
 
@@ -1020,29 +1623,48 @@
     function renderBatchCompare(records) {
       const sampleA = document.getElementById("compareSampleA").value;
       const sampleB = document.getElementById("compareSampleB").value;
+
+      const aData = getCompareData(records, sampleA);
+      const bData = getCompareData(records, sampleB);
+
       const tableBody = document.getElementById("batchCompareTableBody");
       tableBody.innerHTML = "";
+
+      document.getElementById("compareHeadA").textContent = sampleA || "A";
+      document.getElementById("compareHeadB").textContent = sampleB || "B";
+      document.getElementById("compareSummarySub").textContent =
+        compareMode === "latest"
+          ? "เปรียบเทียบจาก record ล่าสุดของ sample id ที่เลือก"
+          : "เปรียบเทียบจากค่าเฉลี่ยรวมของทุกไฟล์ใน sample id ที่เลือก";
+
       destroyBatchCompareCharts();
 
-      document.getElementById("compareTableHeadA").textContent = sampleA || "A";
-      document.getElementById("compareTableHeadB").textContent = sampleB || "B";
-
-      if (!sampleA || !sampleB) {
-        tableBody.innerHTML = `<tr><td colspan="4" style="border-radius:14px;text-align:center;">กรุณาเลือก sample id ทั้ง 2 ฝั่ง</td></tr>`;
-        return;
-      }
-
-      const a = getCompareBatch(records, sampleA);
-      const b = getCompareBatch(records, sampleB);
-
-      if (!a || !b) {
-        tableBody.innerHTML = `<tr><td colspan="4" style="border-radius:14px;text-align:center;">ไม่พบข้อมูลของ sample ที่เลือก</td></tr>`;
+      if (!aData || !bData || !sampleA || !sampleB) {
+        tableBody.innerHTML = `
+          <tr>
+            <td colspan="4" style="border-radius:14px; text-align:center;">
+              กรุณาเลือก sample id ให้ครบ หรือข้อมูลไม่พอ
+            </td>
+          </tr>
+        `;
         return;
       }
 
       const labels = ["Fragrance/Aroma", "Acidity", "Sweetness", "Mouthfeel"];
-      const aValues = [a.fragranceAroma ?? 0, a.acidity ?? 0, a.sweetness ?? 0, a.mouthfeel ?? 0];
-      const bValues = [b.fragranceAroma ?? 0, b.acidity ?? 0, b.sweetness ?? 0, b.mouthfeel ?? 0];
+
+      const aValues = [
+        aData.fragranceAroma ?? 0,
+        aData.acidity ?? 0,
+        aData.sweetness ?? 0,
+        aData.mouthfeel ?? 0
+      ];
+
+      const bValues = [
+        bData.fragranceAroma ?? 0,
+        bData.acidity ?? 0,
+        bData.sweetness ?? 0,
+        bData.mouthfeel ?? 0
+      ];
 
       batchCompareRadar = new Chart(document.getElementById("batchCompareRadar").getContext("2d"), {
         type: "radar",
@@ -1050,7 +1672,7 @@
           labels,
           datasets: [
             {
-              label: a.label,
+              label: compareMode === "latest" ? `${sampleA} latest` : `${sampleA} avg (n=${aData.count})`,
               data: aValues,
               borderColor: "rgba(99,102,241,1)",
               backgroundColor: "rgba(99,102,241,0.18)",
@@ -1058,7 +1680,7 @@
               borderWidth: 2
             },
             {
-              label: b.label,
+              label: compareMode === "latest" ? `${sampleB} latest` : `${sampleB} avg (n=${bData.count})`,
               data: bValues,
               borderColor: "rgba(34,197,94,1)",
               backgroundColor: "rgba(34,197,94,0.16)",
@@ -1091,13 +1713,13 @@
           labels,
           datasets: [
             {
-              label: a.label,
+              label: compareMode === "latest" ? `${sampleA} latest` : `${sampleA} avg`,
               data: aValues,
               backgroundColor: "rgba(99,102,241,0.9)",
               borderRadius: 10
             },
             {
-              label: b.label,
+              label: compareMode === "latest" ? `${sampleB} latest` : `${sampleB} avg`,
               data: bValues,
               backgroundColor: "rgba(34,197,94,0.9)",
               borderRadius: 10
@@ -1113,25 +1735,43 @@
               suggestedMax:15,
               grid:{ color:chartGridColor() },
               ticks:{ color:chartTextColor() },
-              title:{ display:true, text:"Intensity", color:chartTextColor(), font:{ family:"inherit", size:12 } }
+              title:{
+                display:true,
+                text:"Intensity",
+                color:chartTextColor(),
+                font:{ family:"inherit", size:12 }
+              }
             },
-            x:{ grid:{ display:false }, ticks:{ color:chartTextColor() } }
+            x:{
+              grid:{ display:false },
+              ticks:{ color:chartTextColor() }
+            }
           },
-          plugins:{ legend:{ labels:{ color:chartTextColor(), font:{ family:"inherit" } } } }
+          plugins:{
+            legend:{ labels:{ color:chartTextColor(), font:{ family:"inherit" } } }
+          }
         }
       });
 
-      [
-        ["Fragrance/Aroma", a.fragranceAroma, b.fragranceAroma],
-        ["Acidity", a.acidity, b.acidity],
-        ["Sweetness", a.sweetness, b.sweetness],
-        ["Mouthfeel", a.mouthfeel, b.mouthfeel]
-      ].forEach(([label, v1, v2]) => {
+      const rows = [
+        ["Fragrance/Aroma", aData.fragranceAroma, bData.fragranceAroma],
+        ["Acidity", aData.acidity, bData.acidity],
+        ["Sweetness", aData.sweetness, bData.sweetness],
+        ["Mouthfeel", aData.mouthfeel, bData.mouthfeel]
+      ];
+
+      rows.forEach(([label, v1, v2]) => {
         const diff = (v1 ?? 0) - (v2 ?? 0);
         let cls = "compare-flat";
         let diffText = "0.00";
-        if (diff > 0) { cls = "compare-up"; diffText = `+${diff.toFixed(2)} (${sampleA})`; }
-        else if (diff < 0) { cls = "compare-down"; diffText = `${diff.toFixed(2)} (${sampleB})`; }
+
+        if (diff > 0) {
+          cls = "compare-up";
+          diffText = `+${diff.toFixed(2)} (${sampleA})`;
+        } else if (diff < 0) {
+          cls = "compare-down";
+          diffText = `${diff.toFixed(2)} (${sampleB})`;
+        }
 
         const tr = document.createElement("tr");
         tr.innerHTML = `
@@ -1272,12 +1912,23 @@
       [dateChart, originChart, cupperChart].forEach(c => { if (c) c.destroy(); });
     }
 
+    function chartTextColor() {
+      return getComputedStyle(document.body).getPropertyValue('--muted').trim() || '#667085';
+    }
+
+    function chartGridColor() {
+      return document.body.classList.contains('dark') ? 'rgba(255,255,255,0.10)' : 'rgba(148,163,184,0.18)';
+    }
+
     function commonChartOptions(yTitle, showLegend = true) {
       return {
         responsive:true,
         maintainAspectRatio:false,
         scales:{
-          x:{ grid:{ display:false }, ticks:{ color:chartTextColor(), font:{ family:'inherit' } } },
+          x:{
+            grid:{ display:false },
+            ticks:{ color:chartTextColor(), font:{ family:'inherit' } }
+          },
           y:{
             beginAtZero:true,
             grid:{ color:chartGridColor() },
@@ -1305,7 +1956,7 @@
           datasets:[{
             label:"Records",
             data:Object.values(dateData),
-            tension:.36,
+            tension:0.36,
             fill:true,
             borderWidth:3,
             pointRadius:4,
@@ -1369,7 +2020,7 @@
       const arr = [...records];
       if (mode === "date_asc") arr.sort((a,b) => String(a.cupping_date).localeCompare(String(b.cupping_date)));
       else if (mode === "coffee_asc") arr.sort((a,b) => String(a.coffee).localeCompare(String(b.coffee)));
-      else if (mode === "sample_asc") arr.sort((a,b) => String(a.sample_id).localeCompare(String(b.sample_id), undefined, { numeric:true }));
+      else if (mode === "sample_asc") arr.sort((a,b) => String(a.sample_id).localeCompare(String(b.sample_id), undefined, {numeric:true}));
       else arr.sort((a,b) => String(b.cupping_date).localeCompare(String(a.cupping_date)));
       return arr;
     }
@@ -1402,6 +2053,7 @@
     function renderAll(records) {
       document.getElementById("status").textContent = `แสดง ${records.length} รายการ`;
       updateHeader(records);
+      fillCompareSelects(records);
       renderInsights(records);
       renderAverageInsights(records);
       renderBatchCompare(records);
@@ -1457,7 +2109,6 @@
         fillSelect("originFilter", allRecords.map(r => r.origin), "ทุก Origin");
         fillSelect("cupperFilter", allRecords.map(r => r.cupper), "ทุก Cupper");
         fillSelect("sessionFilter", allRecords.map(r => r.session), "ทุก Session");
-        fillCompareSelects(allRecords.map(r => r.sample_id));
 
         document.getElementById("status").textContent = `โหลดสำเร็จ ${allRecords.length} รายการ จาก ${jsonPaths.length} ไฟล์`;
         renderAll(allRecords);
