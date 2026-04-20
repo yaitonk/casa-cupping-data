@@ -1,0 +1,82 @@
+{
+  "coffee": "Alto Quiel",
+  "sample_id": "B06",
+  "cupping_date": "2026-04-20",
+  "cupper": "Surapan Tanta",
+  "session": "AM",
+  "round_no": "1",
+  "origin": "Panama",
+  "variety": "Geisha",
+  "process": "Natural",
+  "descriptors": {
+    "fragrance_aroma": {
+      "selected": [
+        "bergamot / เบอร์กามอต",
+        "citrus / ซิตรัส",
+        "floral / ดอกไม้"
+      ],
+      "custom": "floral-low , sweet aromatic"
+    },
+    "flavor": {
+      "selected": [
+        "bergamot / เบอร์กามอต",
+        "citrus / ซิตรัส",
+        "berry / เบอร์รี",
+        "stone fruit / ผลไม้เมล็ดแข็ง",
+        "honey / น้ำผึ้ง",
+        "candy / ลูกกวาด"
+      ],
+      "custom": "sweet , salty (fermented)-lower than b07"
+    },
+    "aftertaste": {
+      "selected": [
+        "sweet / หวาน",
+        "medium / ปานกลาง",
+        "floral / ดอกไม้",
+        "clean / สะอาด"
+      ],
+      "custom": "sweet , floral-low"
+    },
+    "acidity": {
+      "selected": [
+        "citric / ซิตรัส",
+        "malic / มาลิก",
+        "bright / สดใส",
+        "sharp / คม"
+      ],
+      "custom": "acid-sharper when cool down"
+    },
+    "sweetness": {
+      "selected": [
+        "candy / ลูกกวาด",
+        "brown sugar / น้ำตาลทรายแดง",
+        "clean sweet / หวานสะอาด",
+        "honey / น้ำผึ้ง"
+      ],
+      "custom": ""
+    },
+    "mouthfeel": {
+      "selected": [
+        "smooth / ลื่น",
+        "syrupy / หนืดหวาน",
+        "dense / แน่น"
+      ],
+      "custom": "โปร่งกว่า b07"
+    }
+  },
+  "intensity": {
+    "fragrance": 9,
+    "aroma": 8,
+    "flavor": 8,
+    "aftertaste": 8,
+    "acidity": 8,
+    "sweetness": 9,
+    "mouthfeel": 8
+  },
+  "descriptive_notes": "หวานแน่น มีผลไม้ มีกลิ่น fermented- แต่น้อยกว่า b07",
+  "defects": "none",
+  "tasting_notes": "apricot , sweet & clean",
+  "next_action": "",
+  "tags": "#cupping #cva #coffee",
+  "created_at": "2026-04-20T03:59:55.646Z"
+}

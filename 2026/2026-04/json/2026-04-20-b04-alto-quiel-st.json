@@ -1,0 +1,81 @@
+{
+  "coffee": "Alto Quiel",
+  "sample_id": "B04",
+  "cupping_date": "2026-04-20",
+  "cupper": "Surapan Tanta",
+  "session": "AM",
+  "round_no": "1",
+  "origin": "Panama",
+  "variety": "Geisha",
+  "process": "Natural",
+  "descriptors": {
+    "fragrance_aroma": {
+      "selected": [
+        "floral / ดอกไม้",
+        "caramel / คาราเมล"
+      ],
+      "custom": "off-white floral , sweet aromatic , low-fruit"
+    },
+    "flavor": {
+      "selected": [
+        "floral / ดอกไม้",
+        "stone fruit / ผลไม้เมล็ดแข็ง",
+        "honey / น้ำผึ้ง",
+        "candy / ลูกกวาด",
+        "caramel / คาราเมล",
+        "citrus / ซิตรัส"
+      ],
+      "custom": "m-stonefruit jam"
+    },
+    "aftertaste": {
+      "selected": [
+        "clean / สะอาด",
+        "sweet / หวาน",
+        "floral / ดอกไม้",
+        "medium / ปานกลาง"
+      ],
+      "custom": "off-white , honey"
+    },
+    "acidity": {
+      "selected": [
+        "citric / ซิตรัส",
+        "malic / มาลิก",
+        "bright / สดใส",
+        "round / กลม"
+      ],
+      "custom": ""
+    },
+    "sweetness": {
+      "selected": [
+        "honey / น้ำผึ้ง",
+        "candy / ลูกกวาด",
+        "jammy / แยม",
+        "brown sugar / น้ำตาลทรายแดง"
+      ],
+      "custom": ""
+    },
+    "mouthfeel": {
+      "selected": [
+        "juicy / ฉ่ำ",
+        "smooth / ลื่น",
+        "syrupy / หนืดหวาน"
+      ],
+      "custom": ""
+    }
+  },
+  "intensity": {
+    "fragrance": 9,
+    "aroma": 8,
+    "flavor": 8,
+    "aftertaste": 7,
+    "acidity": 8,
+    "sweetness": 9,
+    "mouthfeel": 8
+  },
+  "descriptive_notes": "",
+  "defects": "none",
+  "tasting_notes": "magnolia , apricot , sweet candy",
+  "next_action": "",
+  "tags": "#cupping #cva #coffee",
+  "created_at": "2026-04-20T03:50:44.389Z"
+}

@@ -1,0 +1,79 @@
+{
+  "coffee": "Alto Quiel",
+  "sample_id": "B05",
+  "cupping_date": "2026-04-20",
+  "cupper": "Surapan Tanta",
+  "session": "AM",
+  "round_no": "1",
+  "origin": "Panama",
+  "variety": "Geusha",
+  "process": "Natural",
+  "descriptors": {
+    "fragrance_aroma": {
+      "selected": [
+        "citrus / ซิตรัส",
+        "stone fruit / ผลไม้เมล็ดแข็ง"
+      ],
+      "custom": "sweet aromatic"
+    },
+    "flavor": {
+      "selected": [
+        "citrus / ซิตรัส",
+        "berry / เบอร์รี",
+        "stone fruit / ผลไม้เมล็ดแข็ง",
+        "tropical fruit / ผลไม้เมืองร้อน",
+        "honey / น้ำผึ้ง",
+        "tea-like / คล้ายชา"
+      ],
+      "custom": "เบา และรสชาติยังปิดอยู่"
+    },
+    "aftertaste": {
+      "selected": [
+        "clean / สะอาด",
+        "sweet / หวาน",
+        "tea-like / คล้ายชา"
+      ],
+      "custom": "เบาบางสั้น"
+    },
+    "acidity": {
+      "selected": [
+        "citric / ซิตรัส",
+        "malic / มาลิก",
+        "round / กลม",
+        "soft / นุ่ม"
+      ],
+      "custom": "ไม่สดใส"
+    },
+    "sweetness": {
+      "selected": [
+        "sugar / น้ำตาล",
+        "candy / ลูกกวาด",
+        "clean sweet / หวานสะอาด"
+      ],
+      "custom": "เบาน้ำหนักน้อย"
+    },
+    "mouthfeel": {
+      "selected": [
+        "silky / เนียน",
+        "thin / บาง",
+        "tea-like / คล้ายชา"
+      ],
+      "custom": ""
+    }
+  },
+  "intensity": {
+    "fragrance": 7,
+    "aroma": 6,
+    "flavor": 7,
+    "aftertaste": 6,
+    "acidity": 6,
+    "sweetness": 6,
+    "mouthfeel": 6
+  },
+  "descriptive_notes": "ทุกอย่างเบาบาง",
+  "defects": "none",
+  "tasting_notes": "stonefruit , sweet , tea-like",
+  "next_action": "",
+  "tags": "#cupping #cva #coffee",
+  "created_at": "2026-04-20T04:04:27.195Z"
+}
