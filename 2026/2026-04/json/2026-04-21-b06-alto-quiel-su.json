@@ -1,0 +1,84 @@
+{
+  "coffee": "Alto Quiel",
+  "sample_id": "B06",
+  "cupping_date": "2026-04-21",
+  "cupper": "Surapan",
+  "session": "AM",
+  "round_no": "1",
+  "origin": "Panama",
+  "variety": "Geisha",
+  "process": "Natural",
+  "descriptors": {
+    "fragrance_aroma": {
+      "selected": [
+        "floral / ดอกไม้",
+        "citrus / ซิตรัส",
+        "honey / น้ำผึ้ง"
+      ],
+      "custom": "floral & sweet aromatic"
+    },
+    "flavor": {
+      "selected": [
+        "floral / ดอกไม้",
+        "bergamot / เบอร์กามอต",
+        "citrus / ซิตรัส",
+        "berry / เบอร์รี",
+        "stone fruit / ผลไม้เมล็ดแข็ง",
+        "honey / น้ำผึ้ง",
+        "candy / ลูกกวาด"
+      ],
+      "custom": ""
+    },
+    "aftertaste": {
+      "selected": [
+        "clean / สะอาด",
+        "sweet / หวาน",
+        "floral / ดอกไม้",
+        "long / ยาว"
+      ],
+      "custom": ""
+    },
+    "acidity": {
+      "selected": [
+        "citric / ซิตรัส",
+        "malic / มาลิก",
+        "soft / นุ่ม",
+        "bright / สดใส"
+      ],
+      "custom": "lively & vibrant"
+    },
+    "sweetness": {
+      "selected": [
+        "honey / น้ำผึ้ง",
+        "candy / ลูกกวาด",
+        "brown sugar / น้ำตาลทรายแดง",
+        "ripe fruit / ผลไม้สุก",
+        "clean sweet / หวานสะอาด"
+      ],
+      "custom": ""
+    },
+    "mouthfeel": {
+      "selected": [
+        "silky / เนียน",
+        "juicy / ฉ่ำ",
+        "smooth / ลื่น"
+      ],
+      "custom": ""
+    }
+  },
+  "intensity": {
+    "fragrance": 8,
+    "aroma": 9,
+    "flavor": 9,
+    "aftertaste": 8,
+    "acidity": 9,
+    "sweetness": 8,
+    "mouthfeel": 8
+  },
+  "descriptive_notes": "",
+  "defects": "none",
+  "tasting_notes": "",
+  "next_action": "",
+  "tags": "#cupping #cva #coffee",
+  "created_at": "2026-04-21T10:47:07.855Z"
+}
