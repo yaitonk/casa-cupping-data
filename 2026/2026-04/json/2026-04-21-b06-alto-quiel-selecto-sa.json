@@ -1,0 +1,72 @@
+{
+  "coffee": "Alto Quiel Selecto",
+  "sample_id": "B06",
+  "cupping_date": "2026-04-21",
+  "cupper": "Saf",
+  "session": "",
+  "round_no": "",
+  "origin": "Panama",
+  "variety": "Geisha",
+  "process": "Natural",
+  "descriptors": {
+    "fragrance_aroma": {
+      "selected": [
+        "floral / ดอกไม้",
+        "caramel / คาราเมล"
+      ],
+      "custom": ""
+    },
+    "flavor": {
+      "selected": [
+        "floral / ดอกไม้",
+        "berry / เบอร์รี",
+        "citrus / ซิตรัส"
+      ],
+      "custom": ""
+    },
+    "aftertaste": {
+      "selected": [
+        "clean / สะอาด",
+        "floral / ดอกไม้",
+        "long / ยาว"
+      ],
+      "custom": "เป็นชาดอกไม้ สีม่วง"
+    },
+    "acidity": {
+      "selected": [
+        "soft / นุ่ม",
+        "bright / สดใส"
+      ],
+      "custom": "Mandarin"
+    },
+    "sweetness": {
+      "selected": [
+        "clean sweet / หวานสะอาด",
+        "candy / ลูกกวาด"
+      ],
+      "custom": "Nougat"
+    },
+    "mouthfeel": {
+      "selected": [
+        "silky / เนียน",
+        "smooth / ลื่น"
+      ],
+      "custom": ""
+    }
+  },
+  "intensity": {
+    "fragrance": 8,
+    "aroma": 9,
+    "flavor": 8,
+    "aftertaste": 8,
+    "acidity": 7,
+    "sweetness": 8,
+    "mouthfeel": 7
+  },
+  "descriptive_notes": "ดอกไม้ออกมาชัดเจนมีความหวานออกแคนดี้พัดแล้วก็มีความเปรี้ยวที่ซับซ้อน",
+  "defects": "",
+  "tasting_notes": "Sweet candy please Sweet and sour like an orange Nougat",
+  "next_action": "",
+  "tags": "#cupping #cva #coffee",
+  "created_at": "2026-04-21T05:09:58.032Z"
+}

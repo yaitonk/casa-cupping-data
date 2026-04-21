@@ -1,0 +1,72 @@
+{
+  "coffee": "Alto Quiel Selecto",
+  "sample_id": "B08",
+  "cupping_date": "2026-04-21",
+  "cupper": "Saf",
+  "session": "",
+  "round_no": "",
+  "origin": "Panama",
+  "variety": "Geisha",
+  "process": "Natural",
+  "descriptors": {
+    "fragrance_aroma": {
+      "selected": [
+        "floral / ดอกไม้",
+        "tea-like / คล้ายชา"
+      ],
+      "custom": "กลิ่นยังไม่ค่อยออก มีกลิ่นบางๆดอกไม้ ชาผลไม้"
+    },
+    "flavor": {
+      "selected": [
+        "floral / ดอกไม้",
+        "citrus / ซิตรัส",
+        "tea-like / คล้ายชา",
+        "candy / ลูกกวาด"
+      ],
+      "custom": "มีดอกไม้เบาๆ มี รสชาติเปรี้ยวที่สว่างความหวานเหมือนลูกกวาดบางๆ แต่สัมผัสโดยรวมคล้ายชา"
+    },
+    "aftertaste": {
+      "selected": [
+        "sweet / หวาน",
+        "tea-like / คล้ายชา"
+      ],
+      "custom": ""
+    },
+    "acidity": {
+      "selected": [
+        "citric / ซิตรัส",
+        "bright / สดใส"
+      ],
+      "custom": "มีความเป็นส้มอ่อนๆ แต่ออกเป็นส้ม mandarin"
+    },
+    "sweetness": {
+      "selected": [
+        "clean sweet / หวานสะอาด"
+      ],
+      "custom": "หวานสดใส สว่าง"
+    },
+    "mouthfeel": {
+      "selected": [
+        "smooth / ลื่น",
+        "silky / เนียน",
+        "tea-like / คล้ายชา"
+      ],
+      "custom": "มีความคล้ายชาดอกไม้"
+    }
+  },
+  "intensity": {
+    "fragrance": 7,
+    "aroma": 7,
+    "flavor": 8,
+    "aftertaste": 7,
+    "acidity": 7,
+    "sweetness": 6,
+    "mouthfeel": 6
+  },
+  "descriptive_notes": "โอนดอกไม้มาเบาหวานสะอาดแล้วก็มีความหวานสะอาด",
+  "defects": "",
+  "tasting_notes": "หวานสดใส่ดี มีความเป็นชาผลไม้ ที่จะออกสีม่วงหน่อยๆ มีความเปรี้ยวที่เหมือนส้ม mandarin ชาผลไม้",
+  "next_action": "",
+  "tags": "#cupping #cva #coffee",
+  "created_at": "2026-04-21T05:10:01.898Z"
+}
