@@ -1,0 +1,76 @@
+{
+  "coffee": "Alto Quiel Selecto",
+  "sample_id": "B09",
+  "cupping_date": "2026-04-21",
+  "cupper": "Saf",
+  "session": "",
+  "round_no": "",
+  "origin": "Panama",
+  "variety": "Geisha",
+  "process": "Natural",
+  "descriptors": {
+    "fragrance_aroma": {
+      "selected": [
+        "floral / ดอกไม้",
+        "caramel / คาราเมล",
+        "candy / ลูกกวาด",
+        "jasmine / มะลิ"
+      ],
+      "custom": "ดอกไม้ชัด กลิ่นหวาน"
+    },
+    "flavor": {
+      "selected": [
+        "floral / ดอกไม้",
+        "berry / เบอร์รี",
+        "citrus / ซิตรัส",
+        "tea-like / คล้ายชา"
+      ],
+      "custom": ""
+    },
+    "aftertaste": {
+      "selected": [
+        "clean / สะอาด",
+        "floral / ดอกไม้",
+        "long / ยาว",
+        "tea-like / คล้ายชา"
+      ],
+      "custom": "มีความสะอาดมีกลิ่นดอกไม้บางบางแล้วก็รสชาติตอนปลายคล้ายชา"
+    },
+    "acidity": {
+      "selected": [
+        "soft / นุ่ม",
+        "bright / สดใส"
+      ],
+      "custom": "Mandarin"
+    },
+    "sweetness": {
+      "selected": [
+        "clean sweet / หวานสะอาด",
+        "candy / ลูกกวาด"
+      ],
+      "custom": "Nougat peach"
+    },
+    "mouthfeel": {
+      "selected": [
+        "smooth / ลื่น",
+        "juicy / ฉ่ำ"
+      ],
+      "custom": ""
+    }
+  },
+  "intensity": {
+    "fragrance": 9,
+    "aroma": 9,
+    "flavor": 8,
+    "aftertaste": 8,
+    "acidity": 7,
+    "sweetness": 8,
+    "mouthfeel": 7
+  },
+  "descriptive_notes": "ดอกไม้ออกมาชัดเจนมีความหวานสบาย รสชาติเปรี้ยวมีความซับซ้อน แต่เวลาเย็นมาท้ายรู้สึกแปลกเหมือนจะฝาดนิดหน่อย",
+  "defects": "",
+  "tasting_notes": "Sweet  Nougat Mandarin tea ผลไม้ Mouthfeel good",
+  "next_action": "",
+  "tags": "#cupping #cva #coffee",
+  "created_at": "2026-04-21T11:19:18.294Z"
+}
