@@ -1,10 +1,10 @@
 {
-  "coffee": "Alto Quiel Selecto",
+  "coffee": "Alto Quiel",
   "sample_id": "B06",
   "cupping_date": "2026-04-21",
   "cupper": "Saf",
-  "session": "",
-  "round_no": "",
+  "session": "1",
+  "round_no": "am",
   "origin": "Panama",
   "variety": "Geisha",
   "process": "Natural",
