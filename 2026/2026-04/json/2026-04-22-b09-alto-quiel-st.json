@@ -1,0 +1,89 @@
+{
+  "coffee": "Alto Quiel",
+  "sample_id": "B09",
+  "cupping_date": "2026-04-22",
+  "cupper": "Surapan Tanta",
+  "session": "PM",
+  "round_no": "2",
+  "origin": "Panama",
+  "variety": "Geisha",
+  "process": "Natural",
+  "descriptors": {
+    "fragrance_aroma": {
+      "selected": [
+        "floral / ดอกไม้",
+        "berry / เบอร์รี",
+        "citrus / ซิตรัส",
+        "candy / ลูกกวาด",
+        "stone fruit / ผลไม้เมล็ดแข็ง",
+        "honey / น้ำผึ้ง",
+        "caramel / คาราเมล"
+      ],
+      "custom": "floral , sweet aromatic"
+    },
+    "flavor": {
+      "selected": [
+        "floral / ดอกไม้",
+        "citrus / ซิตรัส",
+        "berry / เบอร์รี",
+        "stone fruit / ผลไม้เมล็ดแข็ง",
+        "honey / น้ำผึ้ง",
+        "tropical fruit / ผลไม้เมืองร้อน",
+        "apple / แอปเปิล",
+        "candy / ลูกกวาด",
+        "caramel / คาราเมล"
+      ],
+      "custom": "ml - floral , madarin , sweet candy"
+    },
+    "aftertaste": {
+      "selected": [
+        "sweet / หวาน",
+        "floral / ดอกไม้",
+        "clean / สะอาด",
+        "long / ยาว"
+      ],
+      "custom": "mh - sweet , l - floral"
+    },
+    "acidity": {
+      "selected": [
+        "citric / ซิตรัส",
+        "soft / นุ่ม",
+        "bright / สดใส",
+        "malic / มาลิก"
+      ],
+      "custom": ""
+    },
+    "sweetness": {
+      "selected": [
+        "honey / น้ำผึ้ง",
+        "candy / ลูกกวาด",
+        "brown sugar / น้ำตาลทรายแดง",
+        "clean sweet / หวานสะอาด"
+      ],
+      "custom": "หวานตั้งเเต่ต้นจนจบ"
+    },
+    "mouthfeel": {
+      "selected": [
+        "smooth / ลื่น",
+        "silky / เนียน",
+        "syrupy / หนืดหวาน"
+      ],
+      "custom": "more dense  when cooldown"
+    }
+  },
+  "intensity": {
+    "fragrance": 8,
+    "aroma": 7,
+    "flavor": 8,
+    "aftertaste": 9,
+    "acidity": 8,
+    "sweetness": 9,
+    "mouthfeel": 9
+  },
+  "descriptive_notes": "D+1",
+  "defects": "none",
+  "tasting_notes": "",
+  "next_action": "",
+  "tags": "#cupping #cva #coffee",
+  "created_at": "2026-04-22T10:13:48.773Z"
+}
