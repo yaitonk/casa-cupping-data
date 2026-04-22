@@ -1,0 +1,78 @@
+{
+  "coffee": "Alto Quiel",
+  "sample_id": "B06",
+  "cupping_date": "2026-04-22",
+  "cupper": "Surapan Tanta",
+  "session": "PM",
+  "round_no": "2",
+  "origin": "Panama",
+  "variety": "Geisha",
+  "process": "Natural",
+  "descriptors": {
+    "fragrance_aroma": {
+      "selected": [
+        "floral / ดอกไม้",
+        "berry / เบอร์รี",
+        "citrus / ซิตรัส",
+        "candy / ลูกกวาด"
+      ],
+      "custom": "floral , sweet aromatic"
+    },
+    "flavor": {
+      "selected": [
+        "floral / ดอกไม้",
+        "citrus / ซิตรัส",
+        "berry / เบอร์รี",
+        "stone fruit / ผลไม้เมล็ดแข็ง",
+        "honey / น้ำผึ้ง"
+      ],
+      "custom": "sweet candy"
+    },
+    "aftertaste": {
+      "selected": [
+        "sweet / หวาน",
+        "floral / ดอกไม้",
+        "medium / ปานกลาง"
+      ],
+      "custom": "mh - floral"
+    },
+    "acidity": {
+      "selected": [
+        "citric / ซิตรัส",
+        "soft / นุ่ม",
+        "bright / สดใส"
+      ],
+      "custom": ""
+    },
+    "sweetness": {
+      "selected": [
+        "honey / น้ำผึ้ง",
+        "candy / ลูกกวาด",
+        "jammy / แยม"
+      ],
+      "custom": ""
+    },
+    "mouthfeel": {
+      "selected": [
+        "silky / เนียน",
+        "syrupy / หนืดหวาน"
+      ],
+      "custom": "more dense  when cooldown"
+    }
+  },
+  "intensity": {
+    "fragrance": 7,
+    "aroma": 7,
+    "flavor": 8,
+    "aftertaste": 8,
+    "acidity": 7,
+    "sweetness": 8,
+    "mouthfeel": 7
+  },
+  "descriptive_notes": "D+5 ชิมภาคบ่ายเเล้ว หวานมากกว่าเปรี้ยว จนทึบขึ้น",
+  "defects": "none",
+  "tasting_notes": "",
+  "next_action": "",
+  "tags": "#cupping #cva #coffee",
+  "created_at": "2026-04-22T10:02:36.667Z"
+}
